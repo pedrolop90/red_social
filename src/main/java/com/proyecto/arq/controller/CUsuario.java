@@ -24,19 +24,19 @@ public class CUsuario {
         return sUsuario.registrar(usuario);
     }
 
-    @PutMapping("/seguidos")
+    @PutMapping("/seguir")
     public boolean registrarSeguidos(@RequestBody @Valid MAmigo amigo,HttpServletRequest request){
         amigo.setId_usuario((Integer)request.getAttribute("usuario"));
         return sUsuario.registrarSeguidor(amigo);
     }
 
-    @GetMapping("/usuario/seguidos/{id}")
-    public List<MUsuario> listarSeguidos(@PathVariable("id") int id){
-        return sUsuario.listarSeguidos(id);
+    @GetMapping("/usuario/seguidos")
+    public List<MUsuario> listarSeguidos(HttpServletRequest request){
+        return sUsuario.listarSeguidos((Integer)request.getAttribute("usuario"));
     }
-    @GetMapping("/usuario/seguidores/{id}")
-    public List<MUsuario> listarSeguidores(@PathVariable("id") int id){
-        return sUsuario.listarSeguidores(id);
+    @GetMapping("/usuario/seguidores")
+    public List<MUsuario> listarSeguidores(HttpServletRequest request){
+        return sUsuario.listarSeguidores((Integer)request.getAttribute("usuario"));
     }
 
     @PostMapping("usuario/login")
