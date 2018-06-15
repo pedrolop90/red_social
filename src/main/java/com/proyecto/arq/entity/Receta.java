@@ -11,13 +11,15 @@ public class Receta {
     private int id;
     private String nombre;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Paso> pasos;
 
-    @OneToMany
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Ingrediente> ingredientes;
 
 

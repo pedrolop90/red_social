@@ -1,6 +1,8 @@
 package com.proyecto.arq.model;
 
 
+import com.proyecto.arq.entity.Publicacion;
+
 import java.util.Date;
 
 public class MPublicacion {
@@ -9,13 +11,19 @@ public class MPublicacion {
     private Date fecha;
     private String hora;
     private String imagen_receta;
-    private String nickname;
     private int receta;
     private int usuario;
-
+    private int cantidadLikes;
 
     public MPublicacion(){
 
+    }
+
+    public MPublicacion(Publicacion publicacion){
+        this.fecha=publicacion.getFecha();
+        this.hora=publicacion.getHora();
+        this.imagen_receta=publicacion.getImagen_receta();
+        this.cantidadLikes=publicacion.getLikes().size();
     }
 
     public MPublicacion(int id, Date fecha, String hora, String imagen_receta, String nickname, int receta, int usuario) {
@@ -23,9 +31,16 @@ public class MPublicacion {
         this.fecha = fecha;
         this.hora = hora;
         this.imagen_receta = imagen_receta;
-        this.nickname = nickname;
         this.receta = receta;
         this.usuario = usuario;
+    }
+
+    public int getCantidadLikes() {
+        return cantidadLikes;
+    }
+
+    public void setCantidadLikes(int cantidadLikes) {
+        this.cantidadLikes = cantidadLikes;
     }
 
     public int getId() {
@@ -60,13 +75,6 @@ public class MPublicacion {
         this.imagen_receta = imagen_receta;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
 
     public int getReceta() {
         return receta;

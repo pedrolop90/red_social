@@ -10,12 +10,16 @@ public class Paso {
     @GeneratedValue
     private int id;
     private String nombre;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Receta receta;
+
     @Lob
     private String descripcion;
-    @ManyToMany
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Ingrediente> ingredientes;
-    @ManyToOne
-    private Cantidad cantidad;
 
     public Paso(){
 
@@ -53,12 +57,12 @@ public class Paso {
         this.ingredientes = ingredientes;
     }
 
-    public Cantidad getCantidad() {
-        return cantidad;
+    public Receta getReceta() {
+        return receta;
     }
 
-    public void setCantidad(Cantidad cantidad) {
-        this.cantidad = cantidad;
+    public void setReceta(Receta receta) {
+        this.receta = receta;
     }
 
     @Override

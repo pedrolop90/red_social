@@ -11,7 +11,6 @@ public class MReceta {
     private String nombre;
     private int categoria;
 
-
     public MReceta() {
 
     }

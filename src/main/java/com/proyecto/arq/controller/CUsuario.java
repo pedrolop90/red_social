@@ -39,7 +39,7 @@ public class CUsuario {
         return sUsuario.listarSeguidores(id);
     }
 
-    @PostMapping("usuario")
+    @PostMapping("usuario/login")
     public int login(HttpServletRequest request,@RequestBody @Valid MUsuario usuario){
       int res=sUsuario.login(usuario);
       if(res!=-1) request.setAttribute("usuario",res);
@@ -62,6 +62,7 @@ public class CUsuario {
     public MUsuario consultarUsuario(@PathVariable("id") int id){
         return sUsuario.consultarUsuario(id);
     }
+
     @PostMapping("usuario")
     public boolean actualizarUsuario(@RequestBody @Valid Usuario usuario){
         return sUsuario.actualizar(usuario);

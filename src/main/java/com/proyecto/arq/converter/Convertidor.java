@@ -1,10 +1,7 @@
 package com.proyecto.arq.converter;
 
-import com.proyecto.arq.entity.Amigo;
-import com.proyecto.arq.entity.Mensaje;
-import com.proyecto.arq.entity.Usuario;
-import com.proyecto.arq.model.MMensaje;
-import com.proyecto.arq.model.MUsuario;
+import com.proyecto.arq.entity.*;
+import com.proyecto.arq.model.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -45,6 +42,32 @@ public class Convertidor {
         }
         return musaurio;
     }
+
+    public List<MPaso> convertirPaso(List<Paso> pasos){
+        List<MPaso> mpaso=new ArrayList<>();
+        for (Paso u:pasos){
+            mpaso.add(new MPaso(u));
+        }
+        return mpaso;
+    }
+
+    public List<MIngrediente> convertirIngredientes(List<Ingrediente> ingredientes){
+        List<MIngrediente> mIngredientes=new ArrayList<>();
+        for (Ingrediente u:ingredientes){
+            mIngredientes.add(new MIngrediente(u));
+        }
+        return mIngredientes;
+    }
+
+    public List<MPublicacion> convertirPublicacion(List<Publicacion> publicaciones){
+        List<MPublicacion> mPublicacions=new ArrayList<>();
+        for (Publicacion u:publicaciones){
+            mPublicacions.add(new MPublicacion(u));
+        }
+        return mPublicacions;
+    }
+
+
 
     public MUsuario convertirUsuario(Usuario usuario){
         return new MUsuario(usuario);

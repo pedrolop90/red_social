@@ -1,6 +1,8 @@
 package com.proyecto.arq.model;
 
 
+import com.proyecto.arq.entity.Paso;
+
 public class MPaso {
 
     private int id;
@@ -11,6 +13,12 @@ public class MPaso {
 
     public MPaso(){
 
+    }
+
+    public MPaso(Paso paso){
+        this.id=paso.getId();
+        this.nombre=paso.getNombre();
+        this.descripcion=paso.getDescripcion();
     }
 
     public MPaso(int id, String nombre, String descripcion, int receta) {

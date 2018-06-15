@@ -1,29 +1,44 @@
 package com.proyecto.arq.model;
 
 
-import com.proyecto.arq.entity.Cantidad;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.proyecto.arq.entity.Ingrediente;
 
 public class MIngrediente {
 
     private int id;
     private String nombre;
-    private int receta;
-    private int cantidad;
+    private String medida;
+    private int id_receta;
 
     public MIngrediente(){
 
     }
 
-    public MIngrediente(int id, String nombre, int receta, int cantidad) {
+    public MIngrediente(Ingrediente ingrediente){
+        this.id=ingrediente.getId();
+        this.nombre=ingrediente.getNombre();
+        this.medida=ingrediente.getMedida();
+
+    }
+
+    public MIngrediente(int id, String nombre, int receta) {
         this.id = id;
         this.nombre = nombre;
-        this.receta = receta;
-        this.cantidad = cantidad;
+        this.id_receta = receta;
+    }
+
+    public MIngrediente(String nombre, String medida, int id_receta) {
+        this.nombre = nombre;
+        this.medida = medida;
+        this.id_receta = id_receta;
+    }
+
+    public String getMedida() {
+        return medida;
+    }
+
+    public void setMedida(String medida) {
+        this.medida = medida;
     }
 
     public int getId() {
@@ -42,20 +57,12 @@ public class MIngrediente {
         this.nombre = nombre;
     }
 
-    public int getReceta() {
-        return receta;
+    public int getId_receta() {
+        return id_receta;
     }
 
-    public void setReceta(int receta) {
-        this.receta = receta;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setId_receta(int id_receta) {
+        this.id_receta = id_receta;
     }
 
     @Override

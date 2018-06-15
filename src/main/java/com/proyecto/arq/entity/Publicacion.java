@@ -19,10 +19,10 @@ public class Publicacion {
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "publicacion")
     private List<Comentario> comentario;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "like")
     private List<Accion> likes;
 
 
