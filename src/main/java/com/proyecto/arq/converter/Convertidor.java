@@ -69,6 +69,14 @@ public class Convertidor {
 
 
 
+    public List<MComentario> convertirComentario(List<Comentario> comentarios){
+        List<MComentario> mComentario=new ArrayList<>();
+        for (Comentario u:comentarios){
+            mComentario.add(new MComentario(u));
+        }
+        return mComentario;
+    }
+
     public MUsuario convertirUsuario(Usuario usuario){
         return new MUsuario(usuario);
     }

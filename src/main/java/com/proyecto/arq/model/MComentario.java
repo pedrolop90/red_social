@@ -1,5 +1,7 @@
 package com.proyecto.arq.model;
 
+import com.proyecto.arq.entity.Comentario;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +20,14 @@ public class MComentario {
     public MComentario(){
 
     }
+
+    public MComentario(Comentario comentario){
+        this.id=comentario.getId();
+        this.comentario=comentario.getComentario();
+        this.nickname=comentario.getUsuario().getNickname();
+        this.fecha=comentario.getFecha();
+    }
+
 
     public MComentario(int id, String comentario, int publicacion, int usuario, String nickname, Date fecha) {
         this.id = id;

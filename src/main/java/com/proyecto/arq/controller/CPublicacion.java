@@ -2,6 +2,7 @@ package com.proyecto.arq.controller;
 
 import com.proyecto.arq.entity.Categoria;
 import com.proyecto.arq.entity.Ingrediente;
+import com.proyecto.arq.model.MComentario;
 import com.proyecto.arq.model.MPublicacion;
 import com.proyecto.arq.service.SCategoria;
 import com.proyecto.arq.service.SPublicacion;
@@ -27,6 +28,16 @@ public class CPublicacion {
     @GetMapping("/publicacion/{id}")
     public  List<MPublicacion> listarPublicacionesUnUsuario(@PathVariable("id") int id){
         return sPublicacion.listarPublicacionesUnUsuario(id);
+    }
+
+    @GetMapping("/publicacion/likes/{id}")
+    public  int listarCantidadLikesPublicacion(@PathVariable("id") int id){
+        return sPublicacion.listarCantidadLikesPublicacion(id);
+    }
+
+    @GetMapping("/publicacion/comentario/{id}")
+    public  List<MComentario> listarComentariosPublicacion(@PathVariable("id") int id){
+        return sPublicacion.listarComentariosPublicacion(id);
     }
 
 

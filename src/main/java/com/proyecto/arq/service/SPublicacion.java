@@ -5,6 +5,7 @@ import com.proyecto.arq.entity.Amigo;
 import com.proyecto.arq.entity.Publicacion;
 import com.proyecto.arq.entity.Usuario;
 import com.proyecto.arq.model.MAmigo;
+import com.proyecto.arq.model.MComentario;
 import com.proyecto.arq.model.MPublicacion;
 import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.repository.RAmigo;
@@ -57,6 +58,12 @@ public class SPublicacion {
     }
 
 
+    public int listarCantidadLikesPublicacion(int id){
+        return rPublicacion.findOne(id).getLikes().size();
+    }
 
+    public List<MComentario> listarComentariosPublicacion(int id){
+        return convertidor.convertirComentario(rPublicacion.findOne(id).getComentario());
+    }
 
 }
