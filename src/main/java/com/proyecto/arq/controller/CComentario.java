@@ -18,7 +18,8 @@ public class CComentario {
     private SComentario sComentario;
 
     @PutMapping("/comentario")
-    public int registrarComentario(@RequestBody @Valid Comentario comentario){
+    public int registrarComentario(@RequestBody @Valid Comentario comentario,HttpServletRequest request){
+        comentario.setUsuario_id((Integer) request.getSession().getAttribute("usuario"));
         return sComentario.registrar(comentario);
     }
     @DeleteMapping("/comentario/{id}")

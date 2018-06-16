@@ -12,7 +12,8 @@ public class Paso {
     private String nombre;
     @Lob
     private String descripcion;
-
+    @Transient
+    private int id_receta;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Receta receta;
@@ -23,6 +24,14 @@ public class Paso {
 
     public Paso(){
 
+    }
+
+    public int getId_receta() {
+        return id_receta;
+    }
+
+    public void setId_receta(int id_receta) {
+        this.id_receta = id_receta;
     }
 
     public int getId() {

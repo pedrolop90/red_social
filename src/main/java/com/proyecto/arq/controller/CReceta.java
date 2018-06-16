@@ -2,10 +2,7 @@ package com.proyecto.arq.controller;
 
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
-import com.proyecto.arq.model.MMensaje;
 import com.proyecto.arq.model.MPaso;
-import com.proyecto.arq.model.MReceta;
-import com.proyecto.arq.service.SMensaje;
 import com.proyecto.arq.service.SReceta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +20,12 @@ public class CReceta {
 
     @PutMapping("/receta")
     public int registrarUsuario(@RequestBody @Valid Receta receta, HttpServletRequest request){
+        receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
         return sReceta.registrar(receta);
     }
 
     @PostMapping("/receta")
-    public boolean listarMensajeRecibidos(@RequestBody @Valid Receta receta,HttpServletRequest request){
+    public boolean actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
         return sReceta.actualizar(receta);
     }
 

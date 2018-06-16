@@ -25,32 +25,37 @@ public class CUsuario {
     }
 
     @PutMapping("/usuario/seguir")
-    public boolean registrarSeguidos(@RequestBody @Valid MAmigo amigo){
+    public boolean registrarSeguidos(HttpServletRequest request,@RequestBody @Valid MAmigo amigo){
+        amigo.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
         return sUsuario.registrarSeguidor(amigo);
     }
 
-    @GetMapping("/usuario/seguidos/{id}")
-    public List<MUsuario> listarSeguidos(@PathVariable("id") int id){
-        return sUsuario.listarSeguidos(id);
+    @GetMapping("/usuario/seguidos")
+    public List<MUsuario> listarSeguidos(HttpServletRequest request){
+        return sUsuario.listarSeguidos((Integer) request.getSession().getAttribute("usuario"));
     }
-    @GetMapping("/usuario/seguidores/{id}")
-    public List<MUsuario> listarSeguidores(@PathVariable("id") int id){
-        return sUsuario.listarSeguidores(id);
+    @GetMapping("/usuario/seguidores")
+    public List<MUsuario> listarSeguidores(HttpServletRequest request){
+        return sUsuario.listarSeguidores((Integer) request.getSession().getAttribute("usuario"));
     }
 
     @PostMapping("usuario/login")
     public int login(HttpServletRequest request,@RequestBody @Valid MUsuario usuario){
       int res=sUsuario.login(usuario);
+      if(res!=-1){
+          request.getSession(true);
+          request.getSession().setAttribute("usuario",res);
+      }
       return res;
     }
 
-    @GetMapping("usuario/seguidores/cantidad/{id}")
-    public int cantidadSeguidores(@PathVariable("id") int id){
-        return sUsuario.cantidadSeguidores(id);
+    @GetMapping("usuario/seguidores/cantidad")
+    public int cantidadSeguidores(HttpServletRequest request){
+        return sUsuario.cantidadSeguidores((Integer) request.getSession().getAttribute("usuario"));
     }
-    @GetMapping("usuario/seguidos/cantidad/{id}")
-    public int cantidadSeguidos(@PathVariable("id") int id){
-        return sUsuario.cantidadSeguidos(id);
+    @GetMapping("usuario/seguidos/cantidad")
+    public int cantidadSeguidos(HttpServletRequest request){
+        return sUsuario.cantidadSeguidos((Integer) request.getSession().getAttribute("usuario"));
     }
     @GetMapping("usuario/{nombre}")
     public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre){
@@ -62,7 +67,8 @@ public class CUsuario {
     }
 
     @PostMapping("usuario")
-    public boolean actualizarUsuario(@RequestBody @Valid Usuario usuario){
+    public boolean actualizarUsuario(@RequestBody @Valid Usuario usuario,HttpServletRequest request){
+        usuario.setId((Integer) request.getSession().getAttribute("usuario"));
         return sUsuario.actualizar(usuario);
     }
 

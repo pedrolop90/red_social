@@ -39,9 +39,5 @@ public class CPublicacion {
     public  List<MComentario> listarComentariosPublicacion(@PathVariable("id") int id){
         return sPublicacion.listarComentariosPublicacion(id);
     }
-    @DeleteMapping("/publicacion/{id}")
-    public  boolean eliminarPublicacion(@PathVariable("id") int id){
-        return sPublicacion.eliminar(id);
-    }
 
 }
