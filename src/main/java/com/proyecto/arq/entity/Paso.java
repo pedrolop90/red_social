@@ -10,13 +10,13 @@ public class Paso {
     @GeneratedValue
     private int id;
     private String nombre;
+    @Lob
+    private String descripcion;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Receta receta;
 
-    @Lob
-    private String descripcion;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Ingrediente> ingredientes;

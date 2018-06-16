@@ -1,5 +1,7 @@
 package com.proyecto.arq.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,8 +12,11 @@ public class Usuario {
     @GeneratedValue
     private int id;
     private String nickname;
+    @Column(unique = true)
     private String correo;
     private String password;
+    private boolean privacidad=true;
+
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
     private List<Amigo> seguidos;
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "amigo")
@@ -31,6 +36,13 @@ public class Usuario {
     public Usuario() {
     }
 
+    public boolean isPrivacidad() {
+        return privacidad;
+    }
+
+    public void setPrivacidad(boolean privacidad) {
+        this.privacidad = privacidad;
+    }
 
     public List<Amigo> getSeguidos() {
         return seguidos;

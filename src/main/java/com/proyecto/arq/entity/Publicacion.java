@@ -1,5 +1,7 @@
 package com.proyecto.arq.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Publicacion {
     private Date fecha;
     private String hora;
     private String imagen_receta;
+    private boolean privacidad=true;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
@@ -28,6 +31,14 @@ public class Publicacion {
 
     public Publicacion(){
 
+    }
+
+    public boolean isPrivacidad() {
+        return privacidad;
+    }
+
+    public void setPrivacidad(boolean privacidad) {
+        this.privacidad = privacidad;
     }
 
     public int getId() {
