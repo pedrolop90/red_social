@@ -29,11 +29,11 @@ public class SReceta {
 
 
 
-    public int registrar(Receta receta,int id){
+    public int registrar(Receta receta){
         try{
             Publicacion p=new Publicacion();
             p.setReceta(receta);
-            p.setUsuario(rUsuario.findOne(id));
+            p.setUsuario(rUsuario.findOne(receta.getId_usuario()));
             return rPublicacion.save(p).getReceta().getId();
         }catch(Exception e){
             return -1;

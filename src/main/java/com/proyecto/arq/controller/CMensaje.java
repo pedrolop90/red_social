@@ -23,7 +23,6 @@ public class CMensaje {
 
     @PutMapping("/mensaje")
     public int registrarUsuario(@RequestBody @Valid MMensaje mensaje, HttpServletRequest request){
-        mensaje.setOrigen((Integer)request.getAttribute("usuario"));
         return sMensaje.registrar(mensaje);
     }
     @GetMapping("/mensaje/recibido/{id}")

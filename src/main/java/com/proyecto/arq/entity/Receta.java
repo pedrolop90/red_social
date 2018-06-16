@@ -10,7 +10,8 @@ public class Receta {
     @GeneratedValue
     private int id;
     private String nombre;
-
+    @Transient
+    private int id_usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
@@ -25,6 +26,14 @@ public class Receta {
 
     public Receta() {
 
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public int getId() {

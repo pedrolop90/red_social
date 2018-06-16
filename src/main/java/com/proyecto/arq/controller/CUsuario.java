@@ -24,35 +24,33 @@ public class CUsuario {
         return sUsuario.registrar(usuario);
     }
 
-    @PutMapping("/seguir")
-    public boolean registrarSeguidos(@RequestBody @Valid MAmigo amigo,HttpServletRequest request){
-        amigo.setId_usuario((Integer)request.getAttribute("usuario"));
+    @PutMapping("/usuario/seguir")
+    public boolean registrarSeguidos(@RequestBody @Valid MAmigo amigo){
         return sUsuario.registrarSeguidor(amigo);
     }
 
-    @GetMapping("/usuario/seguidos")
-    public List<MUsuario> listarSeguidos(HttpServletRequest request){
-        return sUsuario.listarSeguidos((Integer)request.getAttribute("usuario"));
+    @GetMapping("/usuario/seguidos/{id}")
+    public List<MUsuario> listarSeguidos(@PathVariable("id") int id){
+        return sUsuario.listarSeguidos(id);
     }
-    @GetMapping("/usuario/seguidores")
-    public List<MUsuario> listarSeguidores(HttpServletRequest request){
-        return sUsuario.listarSeguidores((Integer)request.getAttribute("usuario"));
+    @GetMapping("/usuario/seguidores/{id}")
+    public List<MUsuario> listarSeguidores(@PathVariable("id") int id){
+        return sUsuario.listarSeguidores(id);
     }
 
     @PostMapping("usuario/login")
     public int login(HttpServletRequest request,@RequestBody @Valid MUsuario usuario){
       int res=sUsuario.login(usuario);
-      if(res!=-1) request.setAttribute("usuario",res);
       return res;
     }
 
-    @GetMapping("usuario/seguidores/cantidad")
-    public int cantidadSeguidores(HttpServletRequest request){
-        return sUsuario.cantidadSeguidores((Integer) request.getAttribute("usuario"));
+    @GetMapping("usuario/seguidores/cantidad/{id}")
+    public int cantidadSeguidores(@PathVariable("id") int id){
+        return sUsuario.cantidadSeguidores(id);
     }
-    @GetMapping("usuario/seguidos/cantidad")
-    public int cantidadSeguidos(HttpServletRequest request){
-        return sUsuario.cantidadSeguidos((Integer) request.getAttribute("usuario"));
+    @GetMapping("usuario/seguidos/cantidad/{id}")
+    public int cantidadSeguidos(@PathVariable("id") int id){
+        return sUsuario.cantidadSeguidos(id);
     }
     @GetMapping("usuario/{nombre}")
     public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre){

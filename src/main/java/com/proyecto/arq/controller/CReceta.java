@@ -23,11 +23,11 @@ public class CReceta {
 
     @PutMapping("/receta")
     public int registrarUsuario(@RequestBody @Valid Receta receta, HttpServletRequest request){
-        return sReceta.registrar(receta,(Integer)request.getAttribute("usuario"));
+        return sReceta.registrar(receta);
     }
 
     @PostMapping("/receta")
-    public boolean listarMensajeRecibidos(@RequestBody @Valid Receta receta){
+    public boolean listarMensajeRecibidos(@RequestBody @Valid Receta receta,HttpServletRequest request){
         return sReceta.actualizar(receta);
     }
 
@@ -35,6 +35,7 @@ public class CReceta {
     public List<MPaso> listarPasos(@PathVariable("id") int id){
         return sReceta.listarPasos(id);
     }
+
     @GetMapping("/receta/ingrediente/{id}")
     public List<MIngrediente> listarIngredientes(@PathVariable("id") int id){
         return sReceta.listarIngredientes(id);
