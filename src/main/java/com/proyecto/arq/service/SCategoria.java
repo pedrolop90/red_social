@@ -51,7 +51,11 @@ public class SCategoria {
     }
 
     public List<Categoria> listarCategorias(){
-       return rCategoria.findAll();
+        try{
+            return rCategoria.findAll();
+        }catch(Exception e){
+            return null;
+        }
     }
 
 }

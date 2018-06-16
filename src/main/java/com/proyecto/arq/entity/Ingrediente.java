@@ -11,6 +11,8 @@ public class Ingrediente {
     private int id;
     private String nombre;
     private String medida;
+    @Transient
+    private int id_receta;
     @ManyToOne(fetch = FetchType.LAZY)
     private Receta receta;
 
@@ -36,6 +38,14 @@ public class Ingrediente {
 
     public String getMedida() {
         return medida;
+    }
+
+    public int getId_receta() {
+        return id_receta;
+    }
+
+    public void setId_receta(int id_receta) {
+        this.id_receta = id_receta;
     }
 
     public void setMedida(String medida) {

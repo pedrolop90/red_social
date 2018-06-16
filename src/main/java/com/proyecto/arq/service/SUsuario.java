@@ -33,7 +33,12 @@ public class SUsuario {
     }
 
     public MUsuario consultarUsuario(int id){
-        return convertidor.convertirUsuario(rUsuario.findOne(id));
+        try{
+            return convertidor.convertirUsuario(rUsuario.findOne(id));
+        }catch(Exception e){
+            return null;
+        }
+
     }
 
     public int login(MUsuario usuario){
@@ -94,7 +99,11 @@ public class SUsuario {
     }
 
     public List<MUsuario> listarUsuariosNombre(String nombre){
-        return convertidor.convertirUsuarios(rUsuario.findByNicknameIgnoreCaseContaining(nombre));
+        try{
+            return convertidor.convertirUsuarios(rUsuario.findByNicknameIgnoreCaseContaining(nombre));
+        }catch(Exception e){
+            return null;
+        }
     }
 
 
