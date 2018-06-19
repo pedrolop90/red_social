@@ -27,17 +27,29 @@ public class CPublicacion {
 
     @GetMapping("/publicacion/{id}")
     public  List<MPublicacion> listarPublicacionesUnUsuario(@PathVariable("id") int id){
-        return sPublicacion.listarPublicacionesUnUsuario(id);
+        try{
+            return sPublicacion.listarPublicacionesUnUsuario(id);
+        }catch(Exception e){
+            return null;
+        }
     }
 
     @GetMapping("/publicacion/likes/{id}")
     public  int listarCantidadLikesPublicacion(@PathVariable("id") int id){
-        return sPublicacion.listarCantidadLikesPublicacion(id);
+       try{
+           return sPublicacion.listarCantidadLikesPublicacion(id);
+       }catch(Exception e){
+           return -1;
+       }
     }
 
     @GetMapping("/publicacion/comentario/{id}")
     public  List<MComentario> listarComentariosPublicacion(@PathVariable("id") int id){
-        return sPublicacion.listarComentariosPublicacion(id);
+        try{
+            return sPublicacion.listarComentariosPublicacion(id);
+        }catch(Exception e){
+            return null;
+        }
     }
 
 }

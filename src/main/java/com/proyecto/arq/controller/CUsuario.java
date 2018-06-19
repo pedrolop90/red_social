@@ -61,6 +61,7 @@ public class CUsuario {
     public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre){
         return sUsuario.listarUsuariosNombre(nombre);
     }
+    
     @GetMapping("usuario/{id}")
     public MUsuario consultarUsuario(@PathVariable("id") int id){
         return sUsuario.consultarUsuario(id);
