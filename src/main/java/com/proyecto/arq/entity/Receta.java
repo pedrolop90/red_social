@@ -1,5 +1,7 @@
 package com.proyecto.arq.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,6 +14,8 @@ public class Receta {
     private String nombre;
     @Transient
     private int id_usuario;
+    @Transient
+    private MultipartFile file;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
@@ -26,6 +30,14 @@ public class Receta {
 
     public Receta() {
 
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     public int getId_usuario() {

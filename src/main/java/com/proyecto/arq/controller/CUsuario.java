@@ -57,7 +57,7 @@ public class CUsuario {
     public int cantidadSeguidos(HttpServletRequest request){
         return sUsuario.cantidadSeguidos((Integer) request.getSession().getAttribute("usuario"));
     }
-    @GetMapping("usuario/{nombre}")
+    @GetMapping("usuarios/{nombre}")
     public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre){
         return sUsuario.listarUsuariosNombre(nombre);
     }

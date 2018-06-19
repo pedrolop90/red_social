@@ -6,6 +6,7 @@ import com.proyecto.arq.model.MPaso;
 import com.proyecto.arq.service.SReceta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -19,9 +20,9 @@ public class CReceta {
     private SReceta sReceta;
 
     @PostMapping("/receta")
-    public int registrarUsuario(@RequestBody @Valid Receta receta, HttpServletRequest request){
-        receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
-        return sReceta.registrar(receta);
+    public int registrarUsuario(@RequestParam("file") MultipartFile file,
+                                @RequestParam("nombre") String nombre,HttpServletRequest request){
+        return sReceta.registrar(file,nombre,(Integer) request.getSession().getAttribute("usuario"));
     }
 
     @PutMapping("/receta")

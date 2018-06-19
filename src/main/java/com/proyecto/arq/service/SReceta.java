@@ -12,7 +12,12 @@ import com.proyecto.arq.repository.RReceta;
 import com.proyecto.arq.repository.RUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service("SReceta")
@@ -27,11 +32,28 @@ public class SReceta {
     @Autowired
     private Convertidor convertidor;
 
+    private String url_folder_imagenes=".//src//main//resources//files//";
+
+    public void guardarArchivo(MultipartFile file){
+        if(!file.isEmpty()){
+            try {
+                byte[] bytes=file.getBytes();
+                Path path= Paths.get(url_folder_imagenes+file.getOriginalFilename());
+                Files.write(path,bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
 
-    public int registrar(Receta receta){
+    public int registrar(MultipartFile file,String nombre,int id){
         try{
             Publicacion p=new Publicacion();
+            Receta receta=rReceta.findOne(id);
+            receta.setId_usuario(id);
+            receta.setFile(file);
             p.setReceta(receta);
             p.setUsuario(rUsuario.findOne(receta.getId_usuario()));
             return rPublicacion.save(p).getReceta().getId();
