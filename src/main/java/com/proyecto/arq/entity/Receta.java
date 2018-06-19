@@ -27,7 +27,6 @@ public class Receta {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Ingrediente> ingredientes;
 
-
     public Receta() {
 
     }

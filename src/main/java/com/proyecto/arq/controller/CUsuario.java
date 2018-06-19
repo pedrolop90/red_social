@@ -1,5 +1,6 @@
 package com.proyecto.arq.controller;
 
+import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Usuario;
 import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MUsuario;
@@ -29,6 +30,8 @@ public class CUsuario {
         amigo.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
         return sUsuario.registrarSeguidor(amigo);
     }
+
+
 
     @GetMapping("/usuario/seguidos")
     public List<MUsuario> listarSeguidos(HttpServletRequest request){
@@ -61,7 +64,7 @@ public class CUsuario {
     public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre){
         return sUsuario.listarUsuariosNombre(nombre);
     }
-    
+
     @GetMapping("usuario/{id}")
     public MUsuario consultarUsuario(@PathVariable("id") int id){
         return sUsuario.consultarUsuario(id);

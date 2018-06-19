@@ -2,6 +2,7 @@ package com.proyecto.arq.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Ingrediente {
@@ -15,6 +16,9 @@ public class Ingrediente {
     private int id_receta;
     @ManyToOne(fetch = FetchType.LAZY)
     private Receta receta;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingrediente")
+    private List<Paso_Ingrediente> pasos;
 
     public Ingrediente(){
 

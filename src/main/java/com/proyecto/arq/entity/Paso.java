@@ -18,9 +18,8 @@ public class Paso {
     @ManyToOne(fetch = FetchType.LAZY)
     private Receta receta;
 
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
-    private List<Ingrediente> ingredientes;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "paso")
+    private List<Paso_Ingrediente> ingredientes;
 
     public Paso(){
 
@@ -58,11 +57,11 @@ public class Paso {
         this.descripcion = descripcion;
     }
 
-    public List<Ingrediente> getIngredientes() {
+    public List<Paso_Ingrediente> getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(List<Ingrediente> ingredientes) {
+    public void setIngredientes(List<Paso_Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
     }
 
