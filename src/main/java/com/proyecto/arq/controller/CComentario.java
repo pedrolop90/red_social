@@ -17,7 +17,7 @@ public class CComentario {
     @Autowired
     private SComentario sComentario;
 
-    @PutMapping("/comentario")
+    @PostMapping("/comentario")
     public int registrarComentario(@RequestBody @Valid Comentario comentario,HttpServletRequest request){
         comentario.setUsuario_id((Integer) request.getSession().getAttribute("usuario"));
         return sComentario.registrar(comentario);

@@ -16,7 +16,7 @@ public class CAccion {
     @Autowired
     private SAccion sAccion;
 
-    @PutMapping("/like")
+    @PostMapping("/like")
     public int registrarComentario(@RequestBody @Valid Accion accion){
         return sAccion.registrar(accion);
     }

@@ -18,13 +18,13 @@ public class CReceta {
     @Autowired
     private SReceta sReceta;
 
-    @PutMapping("/receta")
+    @PostMapping("/receta")
     public int registrarUsuario(@RequestBody @Valid Receta receta, HttpServletRequest request){
         receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
         return sReceta.registrar(receta);
     }
 
-    @PostMapping("/receta")
+    @PutMapping("/receta")
     public boolean actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
         return sReceta.actualizar(receta);
     }

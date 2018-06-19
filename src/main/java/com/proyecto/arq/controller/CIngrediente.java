@@ -20,7 +20,7 @@ public class CIngrediente {
     @Autowired
     private SIngrediente sIngrediente;
 
-    @PostMapping("/ingrediente")
+    @PutMapping("/ingrediente")
     public boolean actualizarIngrediente(@RequestBody @Valid Ingrediente ingrediente, HttpServletRequest request){
         return sIngrediente.actualizar(ingrediente);
     }

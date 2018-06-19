@@ -21,7 +21,7 @@ public class CMensaje {
     @Autowired
     private SMensaje sMensaje;
 
-    @PutMapping("/mensaje")
+    @PostMapping("/mensaje")
     public int registrarUsuario(@RequestBody @Valid MMensaje mensaje, HttpServletRequest request){
         return sMensaje.registrar(mensaje);
     }

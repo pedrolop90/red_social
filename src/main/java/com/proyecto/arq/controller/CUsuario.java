@@ -19,12 +19,12 @@ public class CUsuario {
     @Autowired
     private SUsuario sUsuario;
 
-    @PutMapping("/usuario")
+    @PostMapping("/usuario")
     public int registrarUsuario(@RequestBody @Valid Usuario usuario){
         return sUsuario.registrar(usuario);
     }
 
-    @PutMapping("/usuario/seguir")
+    @PostMapping("/usuario/seguir")
     public boolean registrarSeguidos(HttpServletRequest request,@RequestBody @Valid MAmigo amigo){
         amigo.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
         return sUsuario.registrarSeguidor(amigo);
@@ -66,7 +66,7 @@ public class CUsuario {
         return sUsuario.consultarUsuario(id);
     }
 
-    @PostMapping("usuario")
+    @PutMapping("usuario")
     public boolean actualizarUsuario(@RequestBody @Valid Usuario usuario,HttpServletRequest request){
         usuario.setId((Integer) request.getSession().getAttribute("usuario"));
         return sUsuario.actualizar(usuario);

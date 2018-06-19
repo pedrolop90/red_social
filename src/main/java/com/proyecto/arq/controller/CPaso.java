@@ -17,7 +17,7 @@ public class CPaso {
     @Autowired
     private SPaso sPaso;
 
-    @PostMapping("/paso")
+    @PutMapping("/paso")
     public boolean actualizarPaso(@RequestBody @Valid Paso paso, HttpServletRequest request) {
         return sPaso.actualizar(paso);
     }
