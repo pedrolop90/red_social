@@ -2,9 +2,7 @@ package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
-import com.proyecto.arq.entity.Tipo;
 import com.proyecto.arq.repository.RIngrediente;
-import com.proyecto.arq.repository.RTipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

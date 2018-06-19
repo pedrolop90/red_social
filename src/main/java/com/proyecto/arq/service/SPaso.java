@@ -1,18 +1,11 @@
 package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
-import com.proyecto.arq.entity.Amigo;
 import com.proyecto.arq.entity.Paso;
-import com.proyecto.arq.entity.Usuario;
-import com.proyecto.arq.model.MAmigo;
-import com.proyecto.arq.model.MUsuario;
-import com.proyecto.arq.repository.RAmigo;
 import com.proyecto.arq.repository.RPaso;
-import com.proyecto.arq.repository.RUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service("SPaso")
 public class SPaso {
@@ -21,8 +14,6 @@ public class SPaso {
     private RPaso rPaso;
     @Autowired
     private Convertidor convertidor;
-
-
 
     public int registrar(Paso paso){
         try{
