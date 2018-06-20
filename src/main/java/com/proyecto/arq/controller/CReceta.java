@@ -20,9 +20,12 @@ public class CReceta {
     private SReceta sReceta;
 
     @PostMapping("/receta")
-    public int registrarUsuario(@RequestParam("file") MultipartFile file,
-                                @RequestParam("nombre") String nombre,HttpServletRequest request){
-        return sReceta.registrar(file,nombre,(Integer) request.getSession().getAttribute("usuario"));
+    public int registrarUsuario(@RequestParam("imagen_receta") MultipartFile file,
+                                @RequestParam("nombre") String nombre,
+                                @RequestParam("id_categoria") int id_categoria,
+                                HttpServletRequest request){
+        /*return sReceta.registrar(file,nombre,id_categoria,(Integer)request.getSession().getAttribute("usuario"));*/
+        return sReceta.registrar(file,nombre,id_categoria,1);
     }
 
     @PutMapping("/receta")

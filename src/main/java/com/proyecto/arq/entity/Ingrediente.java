@@ -24,7 +24,6 @@ public class Ingrediente {
 
     }
 
-
     public int getId() {
         return id;
     }

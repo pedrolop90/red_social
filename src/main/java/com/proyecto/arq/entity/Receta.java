@@ -16,9 +16,9 @@ public class Receta {
     private int id_usuario;
     @Transient
     private MultipartFile file;
+    @Transient
+    private int id_categoria;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Categoria categoria;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Paso> pasos;
@@ -29,6 +29,14 @@ public class Receta {
 
     public Receta() {
 
+    }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
     public MultipartFile getFile() {
@@ -63,13 +71,6 @@ public class Receta {
         this.nombre = nombre;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
 
     public List<Paso> getPasos() {
         return pasos;

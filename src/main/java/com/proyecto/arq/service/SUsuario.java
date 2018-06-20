@@ -42,12 +42,16 @@ public class SUsuario {
     }
 
     public int login(MUsuario usuario){
-        Usuario user=rUsuario.findByCorreo(usuario.getCorreo());
-        if(user!=null&&user.getPassword().equals(usuario.getPassword())){
-            return user.getId();
-        }else{
-            return -1;
-        }
+       try{
+           Usuario user=rUsuario.findByCorreo(usuario.getCorreo());
+           if(user.getPassword().equals(usuario.getPassword())){
+               return user.getId();
+           }else{
+               return -1;
+           }
+       }catch(Exception e){
+           return -1;
+       }
     }
 
 
@@ -87,7 +91,11 @@ public class SUsuario {
         return convertidor.convertirSeguidos(rUsuario.findOne(id).getSeguidos());
     }
     public List<MUsuario> listarSeguidores(int id){
-        return convertidor.convertirSeguidores(rUsuario.findOne(id).getSeguidores());
+       try{
+           return convertidor.convertirSeguidores(rUsuario.findOne(id).getSeguidores());
+       }catch (Exception e){
+           return null;
+        }
     }
 
     public int cantidadSeguidores(int id){
@@ -106,5 +114,12 @@ public class SUsuario {
         }
     }
 
-
+    public boolean cambiarPrivacidad(int usuario){
+        try{
+            rUsuario.findOne(usuario).setPrivacidad(!rUsuario.findOne(usuario).isPrivacidad());
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
 }

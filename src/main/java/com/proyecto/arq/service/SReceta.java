@@ -4,6 +4,7 @@ import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.*;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso;
+import com.proyecto.arq.repository.RCategoria;
 import com.proyecto.arq.repository.RPublicacion;
 import com.proyecto.arq.repository.RReceta;
 import com.proyecto.arq.repository.RUsuario;
@@ -27,6 +28,8 @@ public class SReceta {
     @Autowired
     private RUsuario rUsuario;
     @Autowired
+    private RCategoria rCategoria;
+    @Autowired
     private Convertidor convertidor;
 
     private String url_folder_imagenes=".//src//main//resources//files//";
@@ -45,14 +48,18 @@ public class SReceta {
     }
 
 
-    public int registrar(MultipartFile file,String nombre,int id){
+    public int registrar(MultipartFile file,String nombre,int id_categoria,int id){
         try{
+            //guardarArchivo(file);
             Publicacion p=new Publicacion();
-            Receta receta=rReceta.findOne(id);
-            receta.setId_usuario(id);
-            receta.setFile(file);
+            p.setUsuario(rUsuario.findOne(id));
+            Receta receta=new Receta();
+            receta.setNombre(nombre);
+            p.setImagen_publicacion(file.getBytes());
+            p.setNombre_imagen_publicacion(file.getOriginalFilename());
             p.setReceta(receta);
-            p.setUsuario(rUsuario.findOne(receta.getId_usuario()));
+            p.setCategoria(rCategoria.findOne(id_categoria));
+            rPublicacion.save(p).getReceta().getId();
             return rPublicacion.save(p).getReceta().getId();
         }catch(Exception e){
             return -1;

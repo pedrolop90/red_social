@@ -16,6 +16,8 @@ public class Usuario {
     private String correo;
     private String password;
     private boolean privacidad=true;
+    @Lob
+    private byte[] imagen_usuario;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
     private List<Amigo> seguidos;
@@ -34,6 +36,15 @@ public class Usuario {
     private List<Publicacion> publicaciones;
 
     public Usuario() {
+    }
+
+
+    public byte[] getImagen_usuario() {
+        return imagen_usuario;
+    }
+
+    public void setImagen_usuario(byte[] imagen_usuario) {
+        this.imagen_usuario = imagen_usuario;
     }
 
     public boolean isPrivacidad() {

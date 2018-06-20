@@ -52,4 +52,14 @@ public class CPublicacion {
         }
     }
 
+    @PutMapping("/publicacion/privacidad")
+    public  boolean cambiarPrivacidadPublicacion(@RequestParam("id_publicacion") int id){
+        try{
+            return sPublicacion.cambiarPrivacidadPublicacion(id);
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+
 }

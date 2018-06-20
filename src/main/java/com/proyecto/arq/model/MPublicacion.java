@@ -3,6 +3,8 @@ package com.proyecto.arq.model;
 
 import com.proyecto.arq.entity.Publicacion;
 
+import javax.persistence.Column;
+import javax.persistence.Lob;
 import java.util.Date;
 
 public class MPublicacion {
@@ -10,9 +12,11 @@ public class MPublicacion {
     private int id;
     private Date fecha;
     private String hora;
-    private String imagen_receta;
-    private int receta;
-    private int usuario;
+    @Column(nullable = false)
+    private  String nombre_imagen_publicacion;
+    private byte[] imagen_publicacion;
+    private  String nombre_imagen_receta;
+    private byte[] imagen_receta;
     private int cantidadLikes;
 
     public MPublicacion(){
@@ -20,19 +24,45 @@ public class MPublicacion {
     }
 
     public MPublicacion(Publicacion publicacion){
+        this.id=publicacion.getId();
         this.fecha=publicacion.getFecha();
         this.hora=publicacion.getHora();
-        this.imagen_receta=publicacion.getImagen_receta();
+        this.nombre_imagen_publicacion=publicacion.getNombre_imagen_publicacion();
+        this.imagen_publicacion=publicacion.getImagen_publicacion();
+        this.nombre_imagen_receta=publicacion.getNombre_imagen_receta();
+        this.imagen_receta=publicacion.getImage_receta();
         this.cantidadLikes=publicacion.getLikes().size();
     }
 
-    public MPublicacion(int id, Date fecha, String hora, String imagen_receta, String nickname, int receta, int usuario) {
+    public MPublicacion(int id, Date fecha, String hora, byte[] imagen_receta, String nickname, int receta, int usuario) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.imagen_receta = imagen_receta;
-        this.receta = receta;
-        this.usuario = usuario;
+    }
+
+    public String getNombre_imagen_publicacion() {
+        return nombre_imagen_publicacion;
+    }
+
+    public byte[] getImagen_publicacion() {
+        return imagen_publicacion;
+    }
+
+    public void setImagen_publicacion(byte[] imagen_publicacion) {
+        this.imagen_publicacion = imagen_publicacion;
+    }
+
+    public String getNombre_imagen_receta() {
+        return nombre_imagen_receta;
+    }
+
+    public void setNombre_imagen_receta(String nombre_imagen_receta) {
+        this.nombre_imagen_receta = nombre_imagen_receta;
+    }
+
+    public void setNombre_imagen_publicacion(String nombre_imagen_publicacion) {
+        this.nombre_imagen_publicacion = nombre_imagen_publicacion;
     }
 
     public int getCantidadLikes() {
@@ -67,30 +97,15 @@ public class MPublicacion {
         this.hora = hora;
     }
 
-    public String getImagen_receta() {
+
+    public byte[] getImagen_receta() {
         return imagen_receta;
     }
 
-    public void setImagen_receta(String imagen_receta) {
+    public void setImagen_receta(byte[] imagen_receta) {
         this.imagen_receta = imagen_receta;
     }
 
-
-    public int getReceta() {
-        return receta;
-    }
-
-    public void setReceta(int receta) {
-        this.receta = receta;
-    }
-
-    public int getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
 
     @Override
     public int hashCode() {

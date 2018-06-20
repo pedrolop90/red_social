@@ -16,8 +16,17 @@ public class Publicacion {
     private Receta receta;
     private Date fecha;
     private String hora;
-    private String imagen_receta;
+    private String nombre_imagen_publicacion;
+    @Lob
+    private byte[] imagen_publicacion;
+    private String nombre_imagen_receta;
+    @Lob
+    private byte[] image_receta;
+
     private boolean privacidad=true;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Categoria categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
@@ -31,6 +40,16 @@ public class Publicacion {
 
     public Publicacion(){
 
+    }
+
+
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public boolean isPrivacidad() {
@@ -73,12 +92,37 @@ public class Publicacion {
         this.hora = hora;
     }
 
-    public String getImagen_receta() {
-        return imagen_receta;
+    public String getNombre_imagen_publicacion() {
+        return nombre_imagen_publicacion;
     }
 
-    public void setImagen_receta(String imagen_receta) {
-        this.imagen_receta = imagen_receta;
+    public void setNombre_imagen_publicacion(String nombre_imagen_publicacion) {
+        this.nombre_imagen_publicacion = nombre_imagen_publicacion;
+    }
+
+    public String getNombre_imagen_receta() {
+        return nombre_imagen_receta;
+    }
+
+    public void setNombre_imagen_receta(String nombre_imagen_receta) {
+        this.nombre_imagen_receta = nombre_imagen_receta;
+    }
+
+    public byte[] getImagen_publicacion() {
+        return imagen_publicacion;
+    }
+
+    public void setImagen_publicacion(byte[] imagen_publicacion) {
+        this.imagen_publicacion = imagen_publicacion;
+    }
+
+
+    public byte[] getImage_receta() {
+        return image_receta;
+    }
+
+    public void setImage_receta(byte[] image_receta) {
+        this.image_receta = image_receta;
     }
 
     public Usuario getUsuario() {
