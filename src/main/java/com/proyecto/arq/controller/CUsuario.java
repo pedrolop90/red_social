@@ -76,4 +76,18 @@ public class CUsuario {
         return sUsuario.actualizar(usuario);
     }
 
+    @PostMapping("usuario/privacidad")
+     public int actualizarestado(@RequestBody @Valid Usuario usuario,HttpServletRequest request){
+        if(usuario.isPrivacidad()){
+            usuario.setPrivacidad(false);
+            sUsuario.actualizar(usuario);
+            return 1;
+        }else{
+            usuario.setPrivacidad(true);
+            sUsuario.actualizar(usuario);
+            return 2;
+        }
+
+    }
+
 }

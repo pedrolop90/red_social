@@ -5,9 +5,12 @@ import com.proyecto.arq.entity.Amigo;
 import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Usuario;
 import com.proyecto.arq.model.MAmigo;
+import com.proyecto.arq.model.MIngrediente;
+import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.repository.RAmigo;
 import com.proyecto.arq.repository.RPaso;
+import com.proyecto.arq.repository.RPaso_Ingrediente;
 import com.proyecto.arq.repository.RUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,9 @@ public class SPaso {
     private RPaso rPaso;
     @Autowired
     private Convertidor convertidor;
+
+    @Autowired
+    private RPaso_Ingrediente rPasoIng;
 
 
 
@@ -48,6 +54,23 @@ public class SPaso {
         }catch(Exception e){
             return false;
         }
+    }
+    ///listaringredienteporpasos
+    public List<MIngrediente> Listaringredientesporpasos(int id){
+      return convertidor.convertirPasoporIngredientes(rPaso.findOne(id).getIngredientes());
+
+    }
+
+//eliminar ingrediente
+
+    public boolean eliminarIngrediente(int id) {
+        try {
+            rPasoIng.delete(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
 }

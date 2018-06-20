@@ -1,5 +1,8 @@
 package com.proyecto.arq.model;
 
+import com.proyecto.arq.entity.Ingrediente;
+import com.proyecto.arq.entity.Paso_Ingrediente;
+
 public class MPaso_Ingrediente {
 
     private int id;
@@ -19,6 +22,14 @@ public class MPaso_Ingrediente {
         this.id_ingrediente = id_ingrediente;
         this.medida = medida;
     }
+
+    public MPaso_Ingrediente(Paso_Ingrediente u) {
+        this.id = u.getId();
+        this.id_paso = u.getPaso().getId();
+        this.id_ingrediente = u.getIngrediente().getId();
+        this.medida = u.getMedida();
+    }
+
 
     public int getId() {
         return id;
