@@ -48,15 +48,15 @@ public class SReceta {
     }
 
 
-    public int registrar(MultipartFile file,String nombre,int id_categoria,int id){
+    public int registrar(MultipartFile imagen_receta,MultipartFile imagen_publicacion,String nombre,int id_categoria,int id){
         try{
             //guardarArchivo(file);
             Publicacion p=new Publicacion();
             p.setUsuario(rUsuario.findOne(id));
             Receta receta=new Receta();
             receta.setNombre(nombre);
-            p.setImagen_publicacion(file.getBytes());
-            p.setNombre_imagen_publicacion(file.getOriginalFilename());
+            p.setImagen_publicacion(imagen_receta.getBytes());;
+            p.setImagen_publicacion(imagen_publicacion.getBytes());
             p.setReceta(receta);
             p.setCategoria(rCategoria.findOne(id_categoria));
             rPublicacion.save(p).getReceta().getId();
