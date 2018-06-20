@@ -2,11 +2,8 @@ package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.*;
-import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso;
-import com.proyecto.arq.model.MUsuario;
-import com.proyecto.arq.repository.RAmigo;
 import com.proyecto.arq.repository.RPublicacion;
 import com.proyecto.arq.repository.RReceta;
 import com.proyecto.arq.repository.RUsuario;

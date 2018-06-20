@@ -1,8 +1,8 @@
 package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
-import com.proyecto.arq.entity.Amigo;
 import com.proyecto.arq.entity.Paso;
+<<<<<<< HEAD
 import com.proyecto.arq.entity.Usuario;
 import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MIngrediente;
@@ -12,10 +12,12 @@ import com.proyecto.arq.repository.RAmigo;
 import com.proyecto.arq.repository.RPaso;
 import com.proyecto.arq.repository.RPaso_Ingrediente;
 import com.proyecto.arq.repository.RUsuario;
+=======
+import com.proyecto.arq.repository.RPaso;
+>>>>>>> cd4adfaf57fc9adeabdc80bc497c6320d18f0cc1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service("SPaso")
 public class SPaso {
@@ -25,11 +27,14 @@ public class SPaso {
     @Autowired
     private Convertidor convertidor;
 
+<<<<<<< HEAD
     @Autowired
     private RPaso_Ingrediente rPasoIng;
 
 
 
+=======
+>>>>>>> cd4adfaf57fc9adeabdc80bc497c6320d18f0cc1
     public int registrar(Paso paso){
         try{
             return rPaso.save(paso).getId();

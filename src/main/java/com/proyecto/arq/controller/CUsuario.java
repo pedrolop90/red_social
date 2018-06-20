@@ -22,6 +22,7 @@ public class CUsuario {
 
     @PostMapping("/usuario")
     public int registrarUsuario(@RequestBody @Valid Usuario usuario){
+        System.out.println("a");
         return sUsuario.registrar(usuario);
     }
 

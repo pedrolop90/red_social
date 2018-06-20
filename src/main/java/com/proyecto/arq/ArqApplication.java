@@ -1,7 +1,9 @@
 package com.proyecto.arq;
 
+import com.proyecto.arq.controller.CorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,14 +17,13 @@ public class ArqApplication {
 	}
 
 	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurerAdapter() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/")
-						.allowedOrigins("*");
-			}
-		};
+	public FilterRegistrationBean corsFilterRegistration() {
+		FilterRegistrationBean registrationBean=
+				new FilterRegistrationBean(new CorsFilter());
+		registrationBean.setName("CORS FILTER");
+		registrationBean.addUrlPatterns("/*");
+		registrationBean.setOrder(1);
+		return registrationBean;
 	}
 
 
