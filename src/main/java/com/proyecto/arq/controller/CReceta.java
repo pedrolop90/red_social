@@ -34,8 +34,7 @@ public class CReceta {
                    imagen_publicacion,
                    nombre,
                    id_categoria,
-                   (Integer)request.getSession().getAttribute("usuario"));
-           //return sReceta.registrar(file,nombre,id_categoria,1);
+                   (Integer)request.getSession().getAttribute("usuario"),pasos,ingredientes);
        }catch(Exception e){
            return -1;
        }
