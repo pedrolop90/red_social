@@ -1,5 +1,4 @@
 package com.proyecto.arq.model;
-
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso_Ingrediente;
 

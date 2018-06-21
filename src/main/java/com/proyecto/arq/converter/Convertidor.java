@@ -84,6 +84,7 @@ public class Convertidor {
     public List<MIngrediente> convertirPasoporIngredientes(List<Paso_Ingrediente> ingredientes){
           List<MIngrediente> mIngredient=new ArrayList<>();
           for (Paso_Ingrediente u:ingredientes){
+              u.getIngrediente().setMedida(u.getMedida());
               mIngredient.add(new MIngrediente(u.getIngrediente()));
         }
         return mIngredient;
