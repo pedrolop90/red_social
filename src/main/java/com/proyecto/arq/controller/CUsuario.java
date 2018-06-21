@@ -23,19 +23,7 @@ public class CUsuario {
     private SUsuario sUsuario;
 
     @PostMapping("/usuario")
-    public int registrarUsuario(@RequestParam("imagen_usuario")MultipartFile imagen_usuario,
-                                @RequestParam("nickname") String nickname,
-                                @RequestParam("correo")String correo,
-                                @RequestParam("password")String password) {
-        Usuario usuario=new Usuario();
-        usuario.setCorreo(correo);
-        try {
-            usuario.setImagen_usuario(imagen_usuario.getBytes());
-            usuario.setNickname(nickname);
-            usuario.setPassword(password);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public int registrarUsuario( @RequestBody @Valid Usuario usuario){
         return sUsuario.registrar(usuario);
     }
 
@@ -123,6 +111,16 @@ public class CUsuario {
                 e.printStackTrace();
             }
             return sUsuario.actualizar(usuario);
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+    @PostMapping("usuario/cerraSession")
+    public boolean cerraSession(HttpServletRequest request) {
+        try{
+            request.getSession().removeAttribute("usuario");
+            return true;
         }catch(Exception e){
             return false;
         }

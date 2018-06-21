@@ -1,15 +1,12 @@
 package com.proyecto.arq.service;
+
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
-<<<<<<< HEAD
 import com.proyecto.arq.entity.Paso_Ingrediente;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.repository.RIngrediente;
-=======
-import com.proyecto.arq.model.MIngrediente;
->>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
 import com.proyecto.arq.repository.RPaso;
 import com.proyecto.arq.repository.RPaso_Ingrediente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +22,11 @@ public class SPaso {
     private RPaso rPaso;
     @Autowired
     private Convertidor convertidor;
-<<<<<<< HEAD
-
     @Autowired
     private RIngrediente rIng;
     @Autowired
     private RPaso_Ingrediente rPasoIng;
 
-
-
-
-=======
-    @Autowired
-    private RPaso_Ingrediente rPasoIng;
-
->>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
     public int registrar(Paso paso){
         try{
             return rPaso.save(paso).getId();
@@ -81,24 +68,18 @@ public class SPaso {
         }
 
     }
-
-<<<<<<< HEAD
-    //actualizar paso ingrediente
     public boolean actualizarpasoIngrediente(MPaso_Ingrediente ing){
-       try{
-           Ingrediente into=rIng.findOne(ing.getId_ingrediente());
-           Paso p=rPaso.findOne(ing.getId_paso());
-            Paso_Ingrediente pi=new Paso_Ingrediente();
-            pi.setIngrediente(into);
-            pi.setPaso(p);
-            pi.setMedida(ing.getMedida());
-            rPasoIng.save(pi);
-           return true;
-       } catch (Exception e){
-           return false;
-       }
+        try{
+            Paso paso=rPaso.findOne(ing.getId_paso());
+            Ingrediente ingrediente=rIng.findOne(ing.getId_ingrediente());
+            Paso_Ingrediente paso_ingrediente=rPasoIng.findByIngredienteAndPaso(ingrediente,paso);
+            paso_ingrediente.setMedida(ing.getMedida());
+            rPasoIng.save(paso_ingrediente);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
-=======
->>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
+
 
 }

@@ -18,11 +18,10 @@ public class Paso_Ingrediente {
 
     }
 
-    public Paso_Ingrediente(int id, Paso paso, Ingrediente ingrediente,String medida) {
+    public Paso_Ingrediente(int id, Paso paso, Ingrediente ingrediente) {
         this.id = id;
         this.paso = paso;
         this.ingrediente = ingrediente;
-        this.setMedida(medida);
     }
 
     public int getId() {
@@ -48,13 +47,12 @@ public class Paso_Ingrediente {
     public void setIngrediente(Ingrediente ingrediente) {
         this.ingrediente = ingrediente;
     }
-<<<<<<< HEAD
 
-    public String getMedida(){return medida;}
+    public String getMedida() {
+        return medida;
+    }
 
     public void setMedida(String medida) {
         this.medida = medida;
     }
-=======
->>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
 }

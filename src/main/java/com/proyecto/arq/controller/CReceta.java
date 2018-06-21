@@ -1,5 +1,7 @@
 package com.proyecto.arq.controller;
 
+import com.proyecto.arq.entity.Ingrediente;
+import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso;
@@ -24,6 +26,8 @@ public class CReceta {
                                 @RequestParam("imagen_publicacion") MultipartFile imagen_publicacion,
                                 @RequestParam("nombre") String nombre,
                                 @RequestParam("id_categoria") int id_categoria,
+                                @RequestParam("pasos") List<Paso> pasos,
+                                @RequestParam("ingredientes") List<Ingrediente> ingredientes,
                                 HttpServletRequest request){
        try{
            return sReceta.registrar(imagen_receta,

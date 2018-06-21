@@ -19,6 +19,7 @@ public class Ingrediente {
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingrediente")
     private List<Paso_Ingrediente> pasos;
+
     public Ingrediente(){
 
     }

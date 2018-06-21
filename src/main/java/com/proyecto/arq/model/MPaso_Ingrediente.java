@@ -1,9 +1,4 @@
 package com.proyecto.arq.model;
-<<<<<<< HEAD
-import com.proyecto.arq.entity.Ingrediente;
-import com.proyecto.arq.entity.Paso_Ingrediente;
-=======
->>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
 
 public class MPaso_Ingrediente {
 

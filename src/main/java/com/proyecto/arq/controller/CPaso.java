@@ -2,8 +2,8 @@ package com.proyecto.arq.controller;
 
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
-import com.proyecto.arq.entity.Paso_Ingrediente;
 import com.proyecto.arq.model.MIngrediente;
+import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.service.SIngrediente;
 import com.proyecto.arq.service.SPaso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +39,9 @@ public class CPaso {
         return sPaso.eliminarIngrediente(id);
     }
 
-
     @PutMapping("/paso/editaringrediente")
     public boolean actualizarIngredientePaso(@RequestBody @Valid MPaso_Ingrediente ing, HttpServletRequest request){
-         return sPaso.actualizarpasoIngrediente(ing);
+        return sPaso.actualizarpasoIngrediente(ing);
     }
-
 
 }
