@@ -37,7 +37,6 @@ public class Paso_Ingrediente {
         return paso;
     }
 
-
     public void setPaso(Paso paso) {
         this.paso = paso;
     }
@@ -49,10 +48,13 @@ public class Paso_Ingrediente {
     public void setIngrediente(Ingrediente ingrediente) {
         this.ingrediente = ingrediente;
     }
+<<<<<<< HEAD
 
     public String getMedida(){return medida;}
 
     public void setMedida(String medida) {
         this.medida = medida;
     }
+=======
+>>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
 }

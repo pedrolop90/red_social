@@ -4,7 +4,6 @@ import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Paso_Ingrediente;
 import com.proyecto.arq.model.MIngrediente;
-import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.service.SIngrediente;
 import com.proyecto.arq.service.SPaso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +29,10 @@ public class CPaso {
         return sPaso.eliminar(id);
     }
 
-    //Lista ingrediente pasoxingrediente
     @GetMapping("/paso/ingrediente/{id}")
     public List<MIngrediente> listarpasoxingrediente(@PathVariable("id") int id){
         return sPaso.Listaringredientesporpasos(id);
     }
-
     @DeleteMapping("/paso/eliminaringrediente/{id}")
     public boolean eliminarIngredienteaunpaso(@PathVariable("id") int id)
     {

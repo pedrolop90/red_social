@@ -60,5 +60,14 @@ public class SPublicacion {
     public List<MComentario> listarComentariosPublicacion(int id){
         return convertidor.convertirComentario(rPublicacion.findOne(id).getComentario());
     }
+    public boolean cambiarPrivacidadPublicacion(int id){
+        try{
+            rPublicacion.findOne(id).setPrivacidad(!rPublicacion.findOne(id).isPrivacidad());
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
 
 }

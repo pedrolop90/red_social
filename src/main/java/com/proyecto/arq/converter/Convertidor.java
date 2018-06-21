@@ -68,6 +68,7 @@ public class Convertidor {
     }
 
 
+
     public List<MComentario> convertirComentario(List<Comentario> comentarios){
         List<MComentario> mComentario=new ArrayList<>();
         for (Comentario u:comentarios){
@@ -75,19 +76,22 @@ public class Convertidor {
         }
         return mComentario;
     }
-
-    public MUsuario convertirUsuario(Usuario usuario){
-        return new MUsuario(usuario);
-    }
-
-    //meotodo que se encarga de convertir pasoxingrediente a ingrediente
     public List<MIngrediente> convertirPasoporIngredientes(List<Paso_Ingrediente> ingredientes){
+<<<<<<< HEAD
           List<MIngrediente> mIngredient=new ArrayList<>();
           for (Paso_Ingrediente u:ingredientes){
               u.getIngrediente().setMedida(u.getMedida());
               mIngredient.add(new MIngrediente(u.getIngrediente()));
+=======
+        List<MIngrediente> mIngredient=new ArrayList<>();
+        for (Paso_Ingrediente u:ingredientes){
+            mIngredient.add(new MIngrediente(u.getIngrediente()));
+>>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
         }
         return mIngredient;
+    }
+    public MUsuario convertirUsuario(Usuario usuario){
+        return new MUsuario(usuario);
     }
 
 }

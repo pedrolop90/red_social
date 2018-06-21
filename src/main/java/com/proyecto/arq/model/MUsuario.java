@@ -11,6 +11,7 @@ public class MUsuario {
     private int seguidores;
     private int seguidos;
     private String foto_perfil;
+    private byte[] imagen_usuario;
 
     public MUsuario() {
     }
@@ -20,6 +21,7 @@ public class MUsuario {
         nickname=usuario.getNickname();
         correo=usuario.getCorreo();
         password=usuario.getPassword();
+        imagen_usuario=usuario.getImagen_usuario();
     }
 
     public MUsuario(String nickname, String correo, String password, int seguidores, int seguidos, String foto_perfil) {
@@ -34,6 +36,15 @@ public class MUsuario {
     public MUsuario(String correo, String password) {
         this.correo = correo;
         this.password = password;
+    }
+
+
+    public byte[] getImagen_usuario() {
+        return imagen_usuario;
+    }
+
+    public void setImagen_usuario(byte[] imagen_usuario) {
+        this.imagen_usuario = imagen_usuario;
     }
 
     public int getId() {

@@ -2,10 +2,14 @@ package com.proyecto.arq.service;
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
+<<<<<<< HEAD
 import com.proyecto.arq.entity.Paso_Ingrediente;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.repository.RIngrediente;
+=======
+import com.proyecto.arq.model.MIngrediente;
+>>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
 import com.proyecto.arq.repository.RPaso;
 import com.proyecto.arq.repository.RPaso_Ingrediente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,7 @@ public class SPaso {
     private RPaso rPaso;
     @Autowired
     private Convertidor convertidor;
+<<<<<<< HEAD
 
     @Autowired
     private RIngrediente rIng;
@@ -30,6 +35,11 @@ public class SPaso {
 
 
 
+=======
+    @Autowired
+    private RPaso_Ingrediente rPasoIng;
+
+>>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
     public int registrar(Paso paso){
         try{
             return rPaso.save(paso).getId();
@@ -55,13 +65,12 @@ public class SPaso {
             return false;
         }
     }
-    ///listaringredienteporpasos
+
     public List<MIngrediente> Listaringredientesporpasos(int id){
-      return convertidor.convertirPasoporIngredientes(rPaso.findOne(id).getIngredientes());
+        return convertidor.convertirPasoporIngredientes(rPaso.findOne(id).getIngredientes());
 
     }
 
-//eliminar ingrediente
 
     public boolean eliminarIngrediente(int id) {
         try {
@@ -73,6 +82,7 @@ public class SPaso {
 
     }
 
+<<<<<<< HEAD
     //actualizar paso ingrediente
     public boolean actualizarpasoIngrediente(MPaso_Ingrediente ing){
        try{
@@ -88,5 +98,7 @@ public class SPaso {
            return false;
        }
     }
+=======
+>>>>>>> 8a144c1d7ca367baa1d6a384c2f44da46616b045
 
 }
