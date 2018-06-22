@@ -34,7 +34,7 @@ public class SUsuario {
 
     public MUsuario consultarUsuario(int id){
         try{
-            return convertidor.convertirUsuario(rUsuario.findOne(id));
+            return convertidor.convertirUsuario(rUsuario.findById(id).get());
         }catch(Exception e){
             return null;
         }
@@ -66,7 +66,7 @@ public class SUsuario {
 
     public boolean eliminar(int id){
         try{
-            rUsuario.delete(rUsuario.findOne(id));
+            rUsuario.delete(rUsuario.findById(id).get());
             return true;
         }catch(Exception e){
             return false;
@@ -75,8 +75,8 @@ public class SUsuario {
 
     public boolean registrarSeguidor(MAmigo amigo){
         try{
-            Usuario usuario=rUsuario.findOne(amigo.getId_usuario());
-            Usuario seguido=rUsuario.findOne(amigo.getId_amigo());
+            Usuario usuario=rUsuario.findById(amigo.getId_usuario()).get();
+            Usuario seguido=rUsuario.findById(amigo.getId_amigo()).get();
             Amigo a=new Amigo();
             a.setUsuario(usuario);
             a.setAmigo(seguido);
@@ -88,22 +88,22 @@ public class SUsuario {
     }
 
     public List<MUsuario> listarSeguidos(int id){
-        return convertidor.convertirSeguidos(rUsuario.findOne(id).getSeguidos());
+        return convertidor.convertirSeguidos(rUsuario.findById(id).get().getSeguidos());
     }
     public List<MUsuario> listarSeguidores(int id){
        try{
-           return convertidor.convertirSeguidores(rUsuario.findOne(id).getSeguidores());
+           return convertidor.convertirSeguidores(rUsuario.findById(id).get().getSeguidores());
        }catch (Exception e){
            return null;
         }
     }
 
     public int cantidadSeguidores(int id){
-        return rUsuario.findOne(id).getSeguidores().size();
+        return rUsuario.findById(id).get().getSeguidores().size();
     }
 
     public int cantidadSeguidos(int id){
-        return rUsuario.findOne(id).getSeguidos().size();
+        return rUsuario.findById(id).get().getSeguidos().size();
     }
 
     public List<MUsuario> listarUsuariosNombre(String nombre){
@@ -116,7 +116,9 @@ public class SUsuario {
 
     public boolean cambiarPrivacidad(int usuario){
         try{
-            rUsuario.findOne(usuario).setPrivacidad(!rUsuario.findOne(usuario).isPrivacidad());
+            Usuario user=rUsuario.findById(usuario).get();
+            user.setPrivacidad(!rUsuario.findById(usuario).get().isPrivacidad());
+            rUsuario.save(user);
             return true;
         }catch(Exception e){
             return false;

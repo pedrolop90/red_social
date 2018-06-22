@@ -25,8 +25,8 @@ public class SMensaje {
 
     public int registrar(MMensaje mensaje){
         try{
-            Usuario emi=rUsuario.findOne(mensaje.getOrigen());
-            Usuario des=rUsuario.findOne(mensaje.getDestino());
+            Usuario emi=rUsuario.findById(mensaje.getOrigen()).get();
+            Usuario des=rUsuario.findById(mensaje.getDestino()).get();
             Mensaje m=new Mensaje();
             m.setOrigen(emi);
             m.setDestino(des);
@@ -47,7 +47,7 @@ public class SMensaje {
     }
     public boolean eliminar(int id){
         try{
-            rMensaje.delete(id);
+            rMensaje.delete(rMensaje.findById(id).get());
             return true;
         }catch(Exception e){
             return false;
@@ -55,11 +55,11 @@ public class SMensaje {
     }
 
     public List<MMensaje> listarMensajesRecibidos(int id){
-        return convertidor.convertirMensajesRecibidos(rUsuario.findOne(id).getMensajesRecibidos());
+        return convertidor.convertirMensajesRecibidos(rUsuario.findById(id).get().getMensajesRecibidos());
     }
 
     public List<MMensaje> listarMensajeEnviados(int id){
-        return convertidor.convertirMensajesRecibidos(rUsuario.findOne(id).getMensajesEnviados());
+        return convertidor.convertirMensajesRecibidos(rUsuario.findById(id).get().getMensajesEnviados());
     }
 
 }

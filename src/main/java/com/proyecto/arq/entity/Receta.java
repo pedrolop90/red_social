@@ -1,5 +1,6 @@
 package com.proyecto.arq.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -11,14 +12,19 @@ public class Receta {
     @Id
     @GeneratedValue
     private int id;
+    @JsonProperty("nombre")
     private String nombre;
     @Transient
     private int id_usuario;
     @Transient
-    private MultipartFile file;
+    @JsonProperty("imagen_receta")
+    private MultipartFile imagen_receta;
     @Transient
+    @JsonProperty("imagen_publicacion")
+    private MultipartFile imagen_publicacion;
+    @Transient
+    @JsonProperty("id_categoria")
     private int id_categoria;
-
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
     private List<Paso> pasos;
@@ -31,6 +37,23 @@ public class Receta {
 
     }
 
+
+    public MultipartFile getImagen_receta() {
+        return imagen_receta;
+    }
+
+    public void setImagen_receta(MultipartFile imagen_receta) {
+        this.imagen_receta = imagen_receta;
+    }
+
+    public MultipartFile getImagen_publicacion() {
+        return imagen_publicacion;
+    }
+
+    public void setImagen_publicacion(MultipartFile imagen_publicacion) {
+        this.imagen_publicacion = imagen_publicacion;
+    }
+
     public int getId_categoria() {
         return id_categoria;
     }
@@ -39,13 +62,6 @@ public class Receta {
         this.id_categoria = id_categoria;
     }
 
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
 
     public int getId_usuario() {
         return id_usuario;

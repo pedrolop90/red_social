@@ -16,10 +16,8 @@ public class Publicacion {
     private Receta receta;
     private Date fecha;
     private String hora;
-    private String nombre_imagen_publicacion;
     @Lob
     private byte[] imagen_publicacion;
-    private String nombre_imagen_receta;
     @Lob
     private byte[] image_receta;
 
@@ -92,21 +90,6 @@ public class Publicacion {
         this.hora = hora;
     }
 
-    public String getNombre_imagen_publicacion() {
-        return nombre_imagen_publicacion;
-    }
-
-    public void setNombre_imagen_publicacion(String nombre_imagen_publicacion) {
-        this.nombre_imagen_publicacion = nombre_imagen_publicacion;
-    }
-
-    public String getNombre_imagen_receta() {
-        return nombre_imagen_receta;
-    }
-
-    public void setNombre_imagen_receta(String nombre_imagen_receta) {
-        this.nombre_imagen_receta = nombre_imagen_receta;
-    }
 
     public byte[] getImagen_publicacion() {
         return imagen_publicacion;

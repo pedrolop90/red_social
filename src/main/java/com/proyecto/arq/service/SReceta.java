@@ -49,19 +49,16 @@ public class SReceta {
 
 
     public int registrar(MultipartFile imagen_receta,MultipartFile imagen_publicacion,String nombre,int id_categoria,int id_usuario,
-                         List<Paso> pasos,List<Ingrediente> ingredientes){
+                          List<Ingrediente> ingredientes){
         try{
-            //guardarArchivo(file);
             Publicacion p=new Publicacion();
-            p.setUsuario(rUsuario.findOne(id_usuario));
+            p.setUsuario(rUsuario.findById(id_usuario).get());
             Receta receta=new Receta();
             receta.setNombre(nombre);
-            receta.setIngredientes(ingredientes);
-            receta.setPasos(pasos);
             p.setImagen_publicacion(imagen_receta.getBytes());;
             p.setImagen_publicacion(imagen_publicacion.getBytes());
             p.setReceta(receta);
-            p.setCategoria(rCategoria.findOne(id_categoria));
+            p.setCategoria(rCategoria.findById(id_categoria).get());
             rPublicacion.save(p).getReceta().getId();
             return rPublicacion.save(p).getReceta().getId();
         }catch(Exception e){
@@ -80,7 +77,7 @@ public class SReceta {
 
     public boolean eliminar(int id){
         try{
-            rReceta.delete(rReceta.findOne(id));
+            rReceta.delete(rReceta.findById(id).get());
             return true;
         }catch(Exception e){
             return false;
@@ -88,11 +85,11 @@ public class SReceta {
     }
 
     public List<MPaso> listarPasos(int id){
-        return convertidor.convertirPaso(rReceta.findOne(id).getPasos());
+        return convertidor.convertirPaso(rReceta.findById(id).get().getPasos());
     }
 
     public List<MIngrediente> listarIngredientes(int id){
-        return convertidor.convertirIngredientes(rReceta.findOne(id).getIngredientes());
+        return convertidor.convertirIngredientes(rReceta.findById(id).get().getIngredientes());
     }
 
 }

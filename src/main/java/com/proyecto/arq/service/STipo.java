@@ -37,7 +37,7 @@ public class STipo {
 
     public boolean eliminar(int id){
         try{
-            rTipo.delete(rTipo.findOne(id));
+            rTipo.delete(rTipo.findById(id).get());
             return true;
         }catch(Exception e){
             return false;

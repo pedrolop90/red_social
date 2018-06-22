@@ -36,7 +36,7 @@ public class SComentario {
 
     public boolean eliminar(int id){
         try{
-            rComentario.delete(rComentario.findOne(id));
+            rComentario.delete(rComentario.findById(id).get());
             return true;
         }catch(Exception e){
             return false;

@@ -10,7 +10,6 @@ public class MUsuario {
     private String password;
     private int seguidores;
     private int seguidos;
-    private String foto_perfil;
     private byte[] imagen_usuario;
 
     public MUsuario() {
@@ -24,13 +23,12 @@ public class MUsuario {
         imagen_usuario=usuario.getImagen_usuario();
     }
 
-    public MUsuario(String nickname, String correo, String password, int seguidores, int seguidos, String foto_perfil) {
+    public MUsuario(String nickname, String correo, String password, int seguidores, int seguidos) {
         this.nickname = nickname;
         this.correo = correo;
         this.password = password;
         this.seguidores = seguidores;
         this.seguidos = seguidos;
-        this.foto_perfil = foto_perfil;
     }
 
     public MUsuario(String correo, String password) {
@@ -95,23 +93,4 @@ public class MUsuario {
         this.seguidos = seguidos;
     }
 
-    public String getFoto_perfil() {
-        return foto_perfil;
-    }
-
-    public void setFoto_perfil(String foto_perfil) {
-        this.foto_perfil = foto_perfil;
-    }
-
-    @Override
-    public String toString() {
-        return "MUsuario{" +
-                "nickname='" + nickname + '\'' +
-                ", correo='" + correo + '\'' +
-                ", password='" + password + '\'' +
-                ", seguidores=" + seguidores +
-                ", seguidos=" + seguidos +
-                ", foto_perfil='" + foto_perfil + '\'' +
-                '}';
-    }
 }

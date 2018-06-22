@@ -22,19 +22,13 @@ public class CReceta {
     private SReceta sReceta;
 
     @PostMapping("/receta")
-    public int registrarUsuario(@RequestParam("imagen_receta") MultipartFile imagen_receta,
-                                @RequestParam("imagen_publicacion") MultipartFile imagen_publicacion,
-                                @RequestParam("nombre") String nombre,
-                                @RequestParam("id_categoria") int id_categoria,
-                                @RequestParam("pasos") List<Paso> pasos,
-                                @RequestParam("ingredientes") List<Ingrediente> ingredientes,
-                                HttpServletRequest request){
+    public int registrarReceta(@RequestBody  Receta receta,HttpServletRequest request){
        try{
-           return sReceta.registrar(imagen_receta,
-                   imagen_publicacion,
-                   nombre,
-                   id_categoria,
-                   (Integer)request.getSession().getAttribute("usuario"),pasos,ingredientes);
+           int num=(Integer)request.getSession().getAttribute("usuario");
+           return sReceta.registrar(receta.getImagen_receta(),
+                   receta.getImagen_publicacion(),
+                   receta.getNombre(),
+                   receta.getId_categoria(),num,null);
        }catch(Exception e){
            return -1;
        }
@@ -44,12 +38,10 @@ public class CReceta {
     public boolean actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
         return sReceta.actualizar(receta);
     }
-
     @GetMapping("/receta/paso/{id}")
     public List<MPaso> listarPasos(@PathVariable("id") int id){
         return sReceta.listarPasos(id);
     }
-
     @GetMapping("/receta/ingrediente/{id}")
     public List<MIngrediente> listarIngredientes(@PathVariable("id") int id){
         return sReceta.listarIngredientes(id);

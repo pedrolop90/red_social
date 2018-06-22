@@ -83,6 +83,17 @@ public class Convertidor {
         }
         return mIngredient;
     }
+
+
+    public List<MCategoria> convertirCategorias(List<Categoria> categorias){
+        List<MCategoria> mCategorias=new ArrayList<>();
+        for (Categoria u:categorias){
+            mCategorias.add(new MCategoria(u));
+        }
+        return mCategorias;
+    }
+
+
     public MUsuario convertirUsuario(Usuario usuario){
         return new MUsuario(usuario);
     }

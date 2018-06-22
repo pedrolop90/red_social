@@ -38,7 +38,7 @@ public class SAccion {
 
     public boolean eliminar(int id){
         try{
-            rAccion.delete(rAccion.findOne(id));
+            rAccion.delete(rAccion.findById(id).get());
             return true;
         }catch(Exception e){
             return false;

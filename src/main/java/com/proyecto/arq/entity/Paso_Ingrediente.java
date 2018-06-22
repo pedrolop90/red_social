@@ -13,6 +13,7 @@ public class Paso_Ingrediente {
     @ManyToOne(fetch = FetchType.LAZY)
     private Ingrediente ingrediente;
     private String medida;
+    private String cantidad;
 
     public Paso_Ingrediente(){
 
@@ -22,6 +23,14 @@ public class Paso_Ingrediente {
         this.id = id;
         this.paso = paso;
         this.ingrediente = ingrediente;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getId() {

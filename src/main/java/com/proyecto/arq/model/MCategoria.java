@@ -1,6 +1,8 @@
 package com.proyecto.arq.model;
 
 
+import com.proyecto.arq.entity.Categoria;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +15,10 @@ public class MCategoria {
     public MCategoria(){
 
     }
-
+    public MCategoria(Categoria categoria){
+        this.id=categoria.getId();
+        this.nombre=categoria.getNombre();
+    }
     public MCategoria(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;

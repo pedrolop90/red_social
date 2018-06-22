@@ -42,27 +42,29 @@ public class SPublicacion {
 
     public boolean eliminar(int id){
         try{
-            rPublicacion.delete(rPublicacion.findOne(id));
+            rPublicacion.delete(rPublicacion.findById(id).get());
             return true;
         }catch(Exception e){
             return false;
         }
     }
     public List<MPublicacion> listarPublicacionesUnUsuario(int id){
-        return convertidor.convertirPublicacion(rUsuario.findOne(id).getPublicaciones());
+        return convertidor.convertirPublicacion(rUsuario.findById(id).get().getPublicaciones());
     }
 
 
     public int listarCantidadLikesPublicacion(int id){
-        return rPublicacion.findOne(id).getLikes().size();
+        return rPublicacion.findById(id).get().getLikes().size();
     }
 
     public List<MComentario> listarComentariosPublicacion(int id){
-        return convertidor.convertirComentario(rPublicacion.findOne(id).getComentario());
+        return convertidor.convertirComentario(rPublicacion.findById(id).get().getComentario());
     }
     public boolean cambiarPrivacidadPublicacion(int id){
         try{
-            rPublicacion.findOne(id).setPrivacidad(!rPublicacion.findOne(id).isPrivacidad());
+           Publicacion p= rPublicacion.findById(id).get();
+            p.setPrivacidad(!rPublicacion.findById(id).get().isPrivacidad());
+            rPublicacion.save(p);
             return true;
         }catch(Exception e){
             return false;

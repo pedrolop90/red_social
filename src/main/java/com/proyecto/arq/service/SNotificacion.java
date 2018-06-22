@@ -36,7 +36,7 @@ public class SNotificacion {
 
     public boolean eliminar(int id){
         try{
-            rNotificacion.delete(rNotificacion.findOne(id));
+            rNotificacion.delete(rNotificacion.findById(id).get());
             return true;
         }catch(Exception e){
             return false;

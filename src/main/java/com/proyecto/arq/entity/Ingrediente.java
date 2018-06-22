@@ -11,6 +11,7 @@ public class Ingrediente {
     @GeneratedValue
     private int id;
     private String nombre;
+    private String cantidad;
     private String medida;
     @Transient
     private int id_receta;
@@ -22,6 +23,23 @@ public class Ingrediente {
 
     public Ingrediente(){
 
+    }
+
+
+    public List<Paso_Ingrediente> getPasos() {
+        return pasos;
+    }
+
+    public void setPasos(List<Paso_Ingrediente> pasos) {
+        this.pasos = pasos;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getId() {

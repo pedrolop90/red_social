@@ -46,7 +46,7 @@ public class SPaso {
 
     public boolean eliminar(int id){
         try{
-            rPaso.delete(rPaso.findOne(id));
+            rPaso.delete(rPaso.findById(id).get());
             return true;
         }catch(Exception e){
             return false;
@@ -54,14 +54,14 @@ public class SPaso {
     }
 
     public List<MIngrediente> Listaringredientesporpasos(int id){
-        return convertidor.convertirPasoporIngredientes(rPaso.findOne(id).getIngredientes());
+        return convertidor.convertirPasoporIngredientes(rPaso.findById(id).get().getIngredientes());
 
     }
 
 
     public boolean eliminarIngrediente(int id) {
         try {
-            rPasoIng.delete(id);
+            rPasoIng.delete(rPasoIng.findById(id).get());
             return true;
         } catch (Exception e) {
             return false;
@@ -70,10 +70,11 @@ public class SPaso {
     }
     public boolean actualizarpasoIngrediente(MPaso_Ingrediente ing){
         try{
-            Paso paso=rPaso.findOne(ing.getId_paso());
-            Ingrediente ingrediente=rIng.findOne(ing.getId_ingrediente());
+            Paso paso=rPaso.findById(ing.getId_paso()).get();
+            Ingrediente ingrediente=rIng.findById(ing.getId_ingrediente()).get();
             Paso_Ingrediente paso_ingrediente=rPasoIng.findByIngredienteAndPaso(ingrediente,paso);
             paso_ingrediente.setMedida(ing.getMedida());
+            paso_ingrediente.setMedida(ing.getCantidad());
             rPasoIng.save(paso_ingrediente);
             return true;
         } catch (Exception e){

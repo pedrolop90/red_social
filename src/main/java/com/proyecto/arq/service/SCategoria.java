@@ -2,6 +2,7 @@ package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Categoria;
+import com.proyecto.arq.model.MCategoria;
 import com.proyecto.arq.repository.RCategoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,16 +38,16 @@ public class SCategoria {
 
     public boolean eliminar(int id){
         try{
-            rCategoria.delete(rCategoria.findOne(id));
+            rCategoria.delete(rCategoria.findById(id).get());
             return true;
         }catch(Exception e){
             return false;
         }
     }
 
-    public List<Categoria> listarCategorias(){
+    public List<MCategoria> listarCategorias(){
         try{
-            return rCategoria.findAll();
+            return convertidor.convertirCategorias(rCategoria.findAll());
         }catch(Exception e){
             return null;
         }

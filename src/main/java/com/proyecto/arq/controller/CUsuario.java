@@ -116,7 +116,7 @@ public class CUsuario {
         }
     }
 
-    @PostMapping("usuario/cerraSession")
+    @PostMapping("usuario/cerrarSession")
     public boolean cerraSession(HttpServletRequest request) {
         try{
             request.getSession().removeAttribute("usuario");

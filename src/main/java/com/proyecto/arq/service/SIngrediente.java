@@ -36,7 +36,7 @@ public class SIngrediente {
 
     public boolean eliminar(int id){
         try{
-            rIngrediente.delete(rIngrediente.findOne(id));
+            rIngrediente.delete(rIngrediente.findById(id).get());
             return true;
         }catch(Exception e){
             return false;

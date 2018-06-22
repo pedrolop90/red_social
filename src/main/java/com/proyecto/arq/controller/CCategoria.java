@@ -2,6 +2,7 @@ package com.proyecto.arq.controller;
 
 import com.proyecto.arq.entity.Categoria;
 import com.proyecto.arq.entity.Receta;
+import com.proyecto.arq.model.MCategoria;
 import com.proyecto.arq.service.SCategoria;
 import com.proyecto.arq.service.SReceta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CCategoria {
     private SCategoria sCategoria;
 
     @GetMapping("/categoria")
-    public List<Categoria> listarCategorias(){
+    public List<MCategoria> listarCategorias(){
         return sCategoria.listarCategorias();
     }
 
