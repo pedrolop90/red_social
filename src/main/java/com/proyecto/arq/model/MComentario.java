@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class MComentario {
@@ -15,7 +18,8 @@ public class MComentario {
     private int publicacion;
     private int usuario;
     private String nickname;
-    private Date fecha;
+    private LocalDate fecha;
+    private LocalTime  hora;
 
     public MComentario(){
 
@@ -23,20 +27,15 @@ public class MComentario {
 
     public MComentario(Comentario comentario){
         this.id=comentario.getId();
+        this.publicacion=comentario.getPublicacion().getId();
+        this.usuario=comentario.getUsuario().getId();
         this.comentario=comentario.getComentario();
         this.nickname=comentario.getUsuario().getNickname();
         this.fecha=comentario.getFecha();
+        this.hora=comentario.getHora();
     }
 
-
-    public MComentario(int id, String comentario, int publicacion, int usuario, String nickname, Date fecha) {
-        this.id = id;
-        this.comentario = comentario;
-        this.publicacion = publicacion;
-        this.usuario = usuario;
-        this.nickname = nickname;
-        this.fecha = fecha;
-    }
+ 
 
     public int getId() {
         return id;
@@ -77,16 +76,24 @@ public class MComentario {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+ 
+    public LocalDate getFecha() {
+		return fecha;
+	}
 
-    public Date getFecha() {
-        return fecha;
-    }
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	public LocalTime getHora() {
+		return hora;
+	}
 
-    @Override
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+	@Override
     public int hashCode() {
         return id;
     }

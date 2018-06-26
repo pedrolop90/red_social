@@ -17,7 +17,7 @@ public class Usuario {
     private String password;
     private boolean privacidad=true;
     @Lob
-    private byte[] imagen_usuario;
+    private String imagen_usuario;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
     private List<Amigo> seguidos;
@@ -29,25 +29,33 @@ public class Usuario {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "origen")
     private List<Mensaje> mensajesEnviados;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
-    private List<Notificacion> notificaciones;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
     private List<Publicacion> publicaciones;
+    
+    
 
     public Usuario() {
     }
 
+    
+     
 
-    public byte[] getImagen_usuario() {
-        return imagen_usuario;
-    }
+    public String getImagen_usuario() {
+		return imagen_usuario;
+	}
 
-    public void setImagen_usuario(byte[] imagen_usuario) {
-        this.imagen_usuario = imagen_usuario;
-    }
 
-    public boolean isPrivacidad() {
+
+
+	public void setImagen_usuario(String imagen_usuario) {
+		this.imagen_usuario = imagen_usuario;
+	}
+
+
+
+
+	public boolean isPrivacidad() {
         return privacidad;
     }
 
@@ -118,15 +126,7 @@ public class Usuario {
     public void setMensajesEnviados(List<Mensaje> mensajesEnviados) {
         this.mensajesEnviados = mensajesEnviados;
     }
-
-    public List<Notificacion> getNotificaciones() {
-        return notificaciones;
-    }
-
-    public void setNotificaciones(List<Notificacion> notificaciones) {
-        this.notificaciones = notificaciones;
-    }
-
+ 
     public List<Publicacion> getPublicaciones() {
         return publicaciones;
     }

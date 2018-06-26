@@ -19,11 +19,15 @@ public class CComentario {
 
     @PostMapping("/comentario")
     public int registrarComentario(@RequestBody @Valid Comentario comentario,HttpServletRequest request){
-        comentario.setUsuario_id((Integer) request.getSession().getAttribute("usuario"));
-        return sComentario.registrar(comentario);
+      try {
+    	  comentario.setUsuario_id((Integer) request.getSession().getAttribute("usuario"));
+          return sComentario.registrar(comentario);
+      }catch(Exception e) {
+    	  return -1;
+      }
     }
     @DeleteMapping("/comentario/{id}")
-    public boolean eliminarIngrediente(@PathVariable("id") int id){
+    public boolean eliminarComentario(@PathVariable("id") int id){
         return sComentario.eliminar(id);
     }
 

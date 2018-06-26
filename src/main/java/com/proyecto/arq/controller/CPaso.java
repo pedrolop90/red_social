@@ -4,6 +4,7 @@ import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso_Ingrediente;
+import com.proyecto.arq.repository.RReceta;
 import com.proyecto.arq.service.SIngrediente;
 import com.proyecto.arq.service.SPaso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,12 @@ public class CPaso {
 
     @Autowired
     private SPaso sPaso;
-
+    
+    @PostMapping("/paso")
+    public int registrarPaso(@RequestBody @Valid Paso paso, HttpServletRequest request) {
+        return sPaso.registrar(paso);
+    }
+    
     @PutMapping("/paso")
     public boolean actualizarPaso(@RequestBody @Valid Paso paso, HttpServletRequest request) {
         return sPaso.actualizar(paso);
@@ -33,13 +39,13 @@ public class CPaso {
     public List<MIngrediente> listarpasoxingrediente(@PathVariable("id") int id){
         return sPaso.Listaringredientesporpasos(id);
     }
-    @DeleteMapping("/paso/eliminaringrediente/{id}")
+    @DeleteMapping("/paso/ingrediente/{id}")
     public boolean eliminarIngredienteaunpaso(@PathVariable("id") int id)
     {
         return sPaso.eliminarIngrediente(id);
     }
 
-    @PutMapping("/paso/editaringrediente")
+    @PutMapping("/paso/ingrediente")
     public boolean actualizarIngredientePaso(@RequestBody @Valid MPaso_Ingrediente ing, HttpServletRequest request){
         return sPaso.actualizarpasoIngrediente(ing);
     }

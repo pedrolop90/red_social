@@ -3,6 +3,8 @@ package com.proyecto.arq.service;
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.repository.RIngrediente;
+import com.proyecto.arq.repository.RReceta;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ public class SIngrediente {
 
     @Autowired
     private RIngrediente rIngrediente;
+    @Autowired
+    private RReceta rReceta;
     @Autowired
     private Convertidor convertidor;
 

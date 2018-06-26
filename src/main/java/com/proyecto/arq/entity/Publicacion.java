@@ -3,6 +3,10 @@ package com.proyecto.arq.entity;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +18,10 @@ public class Publicacion {
     private int id;
     @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
     private Receta receta;
-    private Date fecha;
-    private String hora;
-    @Lob
-    private byte[] imagen_publicacion;
-    @Lob
-    private byte[] image_receta;
+    private LocalDate fecha= LocalDate.now();
+    private LocalTime  hora= LocalTime.now();
+    private String imagen_publicacion;
+    private String image_receta;
 
     private boolean privacidad=true;
 
@@ -30,14 +32,13 @@ public class Publicacion {
     private Usuario usuario;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "publicacion")
-    private List<Comentario> comentario;
+    private List<Comentario> comentarios;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "publicacion")
     private List<Accion> likes;
 
 
     public Publicacion(){
-
     }
 
 
@@ -73,58 +74,80 @@ public class Publicacion {
     public void setReceta(Receta receta) {
         this.receta = receta;
     }
+ 
+    
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
+    public LocalDate getFecha() {
+		return fecha;
+	}
 
 
-    public byte[] getImagen_publicacion() {
-        return imagen_publicacion;
-    }
 
-    public void setImagen_publicacion(byte[] imagen_publicacion) {
-        this.imagen_publicacion = imagen_publicacion;
-    }
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
 
-    public byte[] getImage_receta() {
-        return image_receta;
-    }
 
-    public void setImage_receta(byte[] image_receta) {
-        this.image_receta = image_receta;
-    }
+	public LocalTime getHora() {
+		return hora;
+	}
 
-    public Usuario getUsuario() {
+
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+
+
+	public String getImagen_publicacion() {
+		return imagen_publicacion;
+	}
+
+
+
+	public void setImagen_publicacion(String imagen_publicacion) {
+		this.imagen_publicacion = imagen_publicacion;
+	}
+
+
+
+	public String getImage_receta() {
+		return image_receta;
+	}
+
+
+
+	public void setImage_receta(String image_receta) {
+		this.image_receta = image_receta;
+	}
+
+
+
+	public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+ 
+    
+    
+    public List<Comentario> getComentarios() {
+		return comentarios;
+	}
 
-    public List<Comentario> getComentario() {
-        return comentario;
-    }
 
-    public void setComentario(List<Comentario> comentario) {
-        this.comentario = comentario;
-    }
 
-    public List<Accion> getLikes() {
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+
+
+	public List<Accion> getLikes() {
         return likes;
     }
 
@@ -132,7 +155,10 @@ public class Publicacion {
         this.likes = likes;
     }
 
-    @Override
+
+
+
+	@Override
     public int hashCode() {
         return id;
     }

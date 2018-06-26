@@ -1,6 +1,7 @@
 package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
+import com.proyecto.arq.entity.Amigo;
 import com.proyecto.arq.entity.Publicacion;
 import com.proyecto.arq.model.MComentario;
 import com.proyecto.arq.model.MPublicacion;
@@ -9,6 +10,7 @@ import com.proyecto.arq.repository.RUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("SPublicacion")
@@ -49,27 +51,39 @@ public class SPublicacion {
         }
     }
     public List<MPublicacion> listarPublicacionesUnUsuario(int id){
-        return convertidor.convertirPublicacion(rUsuario.findById(id).get().getPublicaciones());
+        return convertidor.convertirPublicacion(rPublicacion.findByUnUsuario(id));
     }
 
+    public List<MPublicacion> listarPublicacionesMiUsuario(int id){
+        return convertidor.convertirPublicacion(rPublicacion.findByMiUsuario(id));
+    }
 
+    
+    
     public int listarCantidadLikesPublicacion(int id){
         return rPublicacion.findById(id).get().getLikes().size();
     }
 
     public List<MComentario> listarComentariosPublicacion(int id){
-        return convertidor.convertirComentario(rPublicacion.findById(id).get().getComentario());
+        return convertidor.convertirComentario(rPublicacion.findById(id).get().getComentarios());
     }
-    public boolean cambiarPrivacidadPublicacion(int id){
+    public boolean cambiarPrivacidadPublicacion(Publicacion publicacion){
         try{
-           Publicacion p= rPublicacion.findById(id).get();
-            p.setPrivacidad(!rPublicacion.findById(id).get().isPrivacidad());
+            Publicacion p= rPublicacion.findById(publicacion.getId()).get();
+            p.setPrivacidad(!p.isPrivacidad());
             rPublicacion.save(p);
             return true;
         }catch(Exception e){
             return false;
         }
     }
-
+    
+    public List<MPublicacion> listarUltimasPublicacionesPublicas(){
+        return convertidor.convertirPublicacion(rPublicacion.findByUsuario());
+    }
+    
+    public List<MPublicacion> listarPublicacionesSeguidos(int id){
+        return convertidor.convertirPublicacion(rPublicacion.findBySeguidos(id));
+    }
 
 }

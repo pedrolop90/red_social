@@ -92,8 +92,12 @@ public class Convertidor {
         }
         return mCategorias;
     }
+    public MReceta convertirReceta(Receta receta){
+        return new MReceta(receta);
+    }
 
-
+    
+    
     public MUsuario convertirUsuario(Usuario usuario){
         return new MUsuario(usuario);
     }

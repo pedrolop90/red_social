@@ -1,10 +1,9 @@
 package com.proyecto.arq.controller;
 
-import com.proyecto.arq.entity.Ingrediente;
-import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso;
+import com.proyecto.arq.model.MReceta;
 import com.proyecto.arq.service.SReceta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,22 +21,36 @@ public class CReceta {
     private SReceta sReceta;
 
     @PostMapping("/receta")
-    public int registrarReceta(@RequestBody  Receta receta,HttpServletRequest request){
+    public MReceta registrarReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
        try{
-           int num=(Integer)request.getSession().getAttribute("usuario");
-           return sReceta.registrar(receta.getImagen_receta(),
-                   receta.getImagen_publicacion(),
-                   receta.getNombre(),
-                   receta.getId_categoria(),num,null);
+    	   if(receta.getId_usuario()==0) {
+    		   receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
+    	   }
+           return sReceta.registrar(receta);
        }catch(Exception e){
-           return -1;
+    	   e.printStackTrace();
+           return null;
        }
     }
 
     @PutMapping("/receta")
     public boolean actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
-        return sReceta.actualizar(receta);
+    	try {
+    		 if(receta.getId_usuario()==0) {
+    	  		   receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
+    	  	   }
+    	        return sReceta.actualizar(receta);
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		return false;
+    	}
     }
+    
+    @GetMapping("/receta/{id}")
+    public MReceta consultarReceta(@PathVariable("id") int id,HttpServletRequest request){
+        return sReceta.consultarReceta(id);
+    }
+    
     @GetMapping("/receta/paso/{id}")
     public List<MPaso> listarPasos(@PathVariable("id") int id){
         return sReceta.listarPasos(id);

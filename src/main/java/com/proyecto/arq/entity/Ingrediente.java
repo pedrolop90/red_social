@@ -13,27 +13,12 @@ public class Ingrediente {
     private String nombre;
     private String cantidad;
     private String medida;
-    @Transient
-    private int id_receta;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Receta receta;
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "ingrediente")
-    private List<Paso_Ingrediente> pasos;
 
     public Ingrediente(){
 
     }
 
-
-    public List<Paso_Ingrediente> getPasos() {
-        return pasos;
-    }
-
-    public void setPasos(List<Paso_Ingrediente> pasos) {
-        this.pasos = pasos;
-    }
-
+ 
     public String getCantidad() {
         return cantidad;
     }
@@ -61,26 +46,11 @@ public class Ingrediente {
     public String getMedida() {
         return medida;
     }
-
-    public int getId_receta() {
-        return id_receta;
-    }
-
-    public void setId_receta(int id_receta) {
-        this.id_receta = id_receta;
-    }
-
+ 
     public void setMedida(String medida) {
         this.medida = medida;
     }
 
-    public Receta getReceta() {
-        return receta;
-    }
-
-    public void setReceta(Receta receta) {
-        this.receta = receta;
-    }
 
     @Override
     public int hashCode() {

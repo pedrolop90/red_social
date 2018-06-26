@@ -9,6 +9,8 @@ import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.repository.RIngrediente;
 import com.proyecto.arq.repository.RPaso;
 import com.proyecto.arq.repository.RPaso_Ingrediente;
+import com.proyecto.arq.repository.RReceta;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class SPaso {
     private Convertidor convertidor;
     @Autowired
     private RIngrediente rIng;
+    @Autowired
+    private RReceta rReceta;
     @Autowired
     private RPaso_Ingrediente rPasoIng;
 
@@ -72,7 +76,7 @@ public class SPaso {
         try{
             Paso paso=rPaso.findById(ing.getId_paso()).get();
             Ingrediente ingrediente=rIng.findById(ing.getId_ingrediente()).get();
-            Paso_Ingrediente paso_ingrediente=rPasoIng.findByIngredienteAndPaso(ingrediente,paso);
+            Paso_Ingrediente paso_ingrediente=rPasoIng.findByIngrediente(ingrediente);
             paso_ingrediente.setMedida(ing.getMedida());
             paso_ingrediente.setMedida(ing.getCantidad());
             rPasoIng.save(paso_ingrediente);

@@ -15,10 +15,7 @@ public class Paso {
     @Transient
     private int id_receta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Receta receta;
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "paso")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Paso_Ingrediente> ingredientes;
 
     public Paso(){
@@ -64,16 +61,17 @@ public class Paso {
     public void setIngredientes(List<Paso_Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
     }
+ 
 
-    public Receta getReceta() {
-        return receta;
-    }
-
-    public void setReceta(Receta receta) {
-        this.receta = receta;
-    }
-
+    
+    
     @Override
+	public String toString() {
+		return "Paso [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", id_receta=" + id_receta
+				+ ", ingredientes=" + ingredientes + "]";
+	}
+
+	@Override
     public int hashCode() {
         return id;
     }

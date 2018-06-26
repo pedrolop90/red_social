@@ -1,26 +1,43 @@
 package com.proyecto.arq.model;
 
-import com.proyecto.arq.entity.Categoria;
-import com.proyecto.arq.entity.Ingrediente;
-import com.proyecto.arq.entity.Paso;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.proyecto.arq.entity.Receta;
+
 
 
 public class MReceta {
 
     private int id;
     private String nombre;
-    private int categoria;
-
+    private List<MIngrediente> ingredientes;
+    private List<MPaso> pasos;
     public MReceta() {
 
     }
-
-    public MReceta(int id, String nombre, int categoria) {
-        this.id = id;
-        this.nombre = nombre;
-        this.categoria = categoria;
+    
+    
+    public MReceta(Receta receta) {
+    	this.id=receta.getId();
+    	this.nombre=receta.getNombre();
+    	ingredientes=new ArrayList<>();
+    	pasos=new ArrayList<>();
+    	for (int i = 0; i < receta.getIngredientes().size(); i++) {
+			ingredientes.add(new MIngrediente(receta.getIngredientes().get(i)));
+		}
+    	for (int i = 0;receta.getPasos()!=null&& i < receta.getPasos().size(); i++) {
+			pasos.add(new MPaso(receta.getPasos().get(i)));
+		}
     }
 
+    public MReceta(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
@@ -37,15 +54,30 @@ public class MReceta {
         this.nombre = nombre;
     }
 
-    public int getCategoria() {
-        return categoria;
-    }
+ 
 
-    public void setCategoria(int categoria) {
-        this.categoria = categoria;
-    }
 
-    @Override
+	public List<MPaso> getPasos() {
+		return pasos;
+	}
+
+
+	public void setPasos(List<MPaso> pasos) {
+		this.pasos = pasos;
+	}
+
+
+	public List<MIngrediente> getIngredientes() {
+		return ingredientes;
+	}
+
+
+	public void setIngredientes(List<MIngrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
+
+
+	@Override
     public int hashCode() {
         return id;
     }

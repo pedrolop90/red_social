@@ -1,12 +1,10 @@
 package com.proyecto.arq.controller;
 
-import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Usuario;
 import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.service.SUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,11 +55,10 @@ public class CUsuario {
     }
 
     @PostMapping("usuario/login")
-    public int login(HttpServletRequest request, @RequestBody @Valid MUsuario usuario) {
+    public int login(@RequestBody @Valid MUsuario usuario,HttpServletRequest request) {
         int res = sUsuario.login(usuario);
         if (res != -1) {
-            request.getSession(true);
-            request.getSession().setAttribute("usuario", res);
+            request.getSession(true).setAttribute("usuario", res);
         }
         return res;
     }
@@ -93,28 +90,26 @@ public class CUsuario {
     public MUsuario consultarUsuario(@PathVariable("id") int id) {
         return sUsuario.consultarUsuario(id);
     }
+    @GetMapping("usuario")
+    public MUsuario consultarUsuarioPropio(HttpServletRequest request) {
+    	try {
+            return sUsuario.consultarUsuario((Integer)request.getSession().getAttribute("usuario"));
+    	}catch(Exception e) {
+    		return null;
+    	}
+    }
 
     @PutMapping("usuario")
-    public boolean actualizarUsuario(@RequestParam("imagen_usuario")MultipartFile imagen_usuario,
-                                     @RequestParam("nickname") String nickname,
-                                     @RequestParam("correo")String correo,
-                                     @RequestParam("password")String password, HttpServletRequest request) {
+    public boolean actualizarUsuario(@RequestBody @Valid Usuario usuario, HttpServletRequest request) {
         try{
-            Usuario usuario=new Usuario();
-            usuario.setCorreo(correo);
-            try {
-                usuario.setImagen_usuario(imagen_usuario.getBytes());
-                usuario.setNickname(nickname);
-                usuario.setPassword(password);
-                usuario.setId((Integer) request.getSession().getAttribute("usuario"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            usuario.setId((Integer) request.getSession().getAttribute("usuario"));
             return sUsuario.actualizar(usuario);
         }catch(Exception e){
+        	e.printStackTrace();
             return false;
         }
     }
+     
 
     @PostMapping("usuario/cerrarSession")
     public boolean cerraSession(HttpServletRequest request) {
@@ -126,10 +121,18 @@ public class CUsuario {
         }
     }
 
+    @PutMapping("usuario/privacidad/prueba")
+    public boolean actualizarEstado(@RequestBody @Valid Usuario usuario,HttpServletRequest request) {
+       try{
+    	   return sUsuario.cambiarPrivacidad(usuario.getId());
+       }catch(Exception e){
+           return false;
+       }
+    }
     @PutMapping("usuario/privacidad")
     public boolean actualizarEstado(HttpServletRequest request) {
        try{
-           return sUsuario.cambiarPrivacidad((Integer) request.getSession().getAttribute("usuario"));
+    	   return sUsuario.cambiarPrivacidad((Integer) request.getSession().getAttribute("usuario"));
        }catch(Exception e){
            return false;
        }

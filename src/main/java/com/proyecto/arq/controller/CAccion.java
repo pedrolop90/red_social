@@ -7,6 +7,7 @@ import com.proyecto.arq.service.SComentario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -17,12 +18,14 @@ public class CAccion {
     private SAccion sAccion;
 
     @PostMapping("/like")
-    public int registrarComentario(@RequestBody @Valid Accion accion){
-        return sAccion.registrar(accion);
+    public int registrarLike(@RequestBody @Valid Accion accion,HttpServletRequest request){
+    	try {
+    		accion.setUsuario_id((Integer)request.getSession().getAttribute("usuario"));
+            return sAccion.registrar(accion);
+    	}catch(Exception e) {
+    		return -1;
+    	}
     }
-    @DeleteMapping("/like/{id}")
-    public boolean eliminarIngrediente(@PathVariable("id") int id){
-        return sAccion.eliminar(id);
-    }
+
 
 }

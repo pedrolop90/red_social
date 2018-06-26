@@ -1,6 +1,9 @@
 package com.proyecto.arq.entity;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -11,7 +14,8 @@ public class Comentario {
     private int id;
     @Lob
     private String comentario;
-    private Date fecha;
+    private LocalDate fecha= LocalDate.now();
+    private LocalTime  hora= LocalTime.now();
     @Transient
     private int usuario_id;
     @Transient
@@ -67,16 +71,25 @@ public class Comentario {
     public void setPublicacion_id(int publicacion_id) {
         this.publicacion_id = publicacion_id;
     }
+ 
 
-    public Date getFecha() {
-        return fecha;
-    }
+    public LocalDate getFecha() {
+		return fecha;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
-    public Usuario getUsuario() {
+	public LocalTime getHora() {
+		return hora;
+	}
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+	public Usuario getUsuario() {
         return usuario;
     }
 

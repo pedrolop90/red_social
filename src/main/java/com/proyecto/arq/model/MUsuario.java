@@ -1,5 +1,7 @@
 package com.proyecto.arq.model;
 
+import java.util.Arrays;
+
 import com.proyecto.arq.entity.Usuario;
 
 public class MUsuario {
@@ -10,7 +12,8 @@ public class MUsuario {
     private String password;
     private int seguidores;
     private int seguidos;
-    private byte[] imagen_usuario;
+    private String imagen_usuario;
+    private boolean privacidad;
 
     public MUsuario() {
     }
@@ -21,6 +24,7 @@ public class MUsuario {
         correo=usuario.getCorreo();
         password=usuario.getPassword();
         imagen_usuario=usuario.getImagen_usuario();
+        privacidad=usuario.isPrivacidad();
     }
 
     public MUsuario(String nickname, String correo, String password, int seguidores, int seguidos) {
@@ -31,21 +35,32 @@ public class MUsuario {
         this.seguidos = seguidos;
     }
 
-    public MUsuario(String correo, String password) {
+    
+    
+    public boolean isPrivacidad() {
+		return privacidad;
+	}
+
+	public void setPrivacidad(boolean privacidad) {
+		this.privacidad = privacidad;
+	}
+
+	public MUsuario(String correo, String password) {
         this.correo = correo;
         this.password = password;
     }
 
+ 
 
-    public byte[] getImagen_usuario() {
-        return imagen_usuario;
-    }
+    public String getImagen_usuario() {
+		return imagen_usuario;
+	}
 
-    public void setImagen_usuario(byte[] imagen_usuario) {
-        this.imagen_usuario = imagen_usuario;
-    }
+	public void setImagen_usuario(String imagen_usuario) {
+		this.imagen_usuario = imagen_usuario;
+	}
 
-    public int getId() {
+	public int getId() {
         return id;
     }
 
@@ -92,5 +107,7 @@ public class MUsuario {
     public void setSeguidos(int seguidos) {
         this.seguidos = seguidos;
     }
-
+ 
+    
+    
 }

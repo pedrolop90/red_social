@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RPaso_Ingrediente extends JpaRepository<Paso_Ingrediente,Integer> {
 
-    Paso_Ingrediente findByIngredienteAndPaso(Ingrediente ingrediente,Paso paso);
+    Paso_Ingrediente findByIngrediente(Ingrediente ingrediente);
 
 }

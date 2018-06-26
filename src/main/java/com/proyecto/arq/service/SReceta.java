@@ -4,7 +4,10 @@ import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.*;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso;
+import com.proyecto.arq.model.MReceta;
+import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.repository.RCategoria;
+import com.proyecto.arq.repository.RIngrediente;
 import com.proyecto.arq.repository.RPublicacion;
 import com.proyecto.arq.repository.RReceta;
 import com.proyecto.arq.repository.RUsuario;
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.List;
 
 @Service("SReceta")
@@ -30,11 +34,13 @@ public class SReceta {
     @Autowired
     private RCategoria rCategoria;
     @Autowired
+    private RIngrediente rIngrediente;
+    @Autowired
     private Convertidor convertidor;
 
-    private String url_folder_imagenes=".//src//main//resources//files//";
+//    private String url_folder_imagenes=".//src//main//resources//files//";
 
-    public void guardarArchivo(MultipartFile file){
+   /* public void guardarArchivo(MultipartFile file){
         if(!file.isEmpty()){
             try {
                 byte[] bytes=file.getBytes();
@@ -45,32 +51,38 @@ public class SReceta {
             }
 
         }
-    }
+    }*/
 
 
-    public int registrar(MultipartFile imagen_receta,MultipartFile imagen_publicacion,String nombre,int id_categoria,int id_usuario,
-                          List<Ingrediente> ingredientes){
+    public MReceta registrar(Receta receta){
         try{
             Publicacion p=new Publicacion();
-            p.setUsuario(rUsuario.findById(id_usuario).get());
-            Receta receta=new Receta();
-            receta.setNombre(nombre);
-            p.setImagen_publicacion(imagen_receta.getBytes());;
-            p.setImagen_publicacion(imagen_publicacion.getBytes());
+            p.setUsuario(rUsuario.findById(receta.getId_usuario()).get());
+            p.setImage_receta(receta.getImagen_receta());
+            p.setImagen_publicacion(receta.getImagen_publicacion());
             p.setReceta(receta);
-            p.setCategoria(rCategoria.findById(id_categoria).get());
-            rPublicacion.save(p).getReceta().getId();
-            return rPublicacion.save(p).getReceta().getId();
+            p.setCategoria(rCategoria.findById(receta.getId_categoria()).get());
+            return  convertidor.convertirReceta(rPublicacion.save(p).getReceta());
         }catch(Exception e){
-            return -1;
+        	e.printStackTrace();
+            return null;
         }
     }
 
     public boolean actualizar(Receta receta){
         try{
+            if(receta.getPasos()!=null) {
+            	for (int i = 0; i < receta.getPasos().size(); i++) {
+            		for (int j = 0; j < receta.getPasos().get(i).getIngredientes().size(); j++) {
+            			receta.getPasos().get(i).getIngredientes().get(j).setIngrediente(rIngrediente.findById(receta.getPasos().get(i).getIngredientes().get(j).getId_ingrediente()).get());
+					System.out.println(receta.getPasos().get(i).getIngredientes().get(j).getIngrediente());
+            		}
+				}
+            }
             rReceta.save(receta);
             return true;
         }catch(Exception e){
+        	e.printStackTrace();
             return false;
         }
     }
@@ -92,4 +104,15 @@ public class SReceta {
         return convertidor.convertirIngredientes(rReceta.findById(id).get().getIngredientes());
     }
 
+    
+    public MReceta consultarReceta(int id){
+        try{
+            return convertidor.convertirReceta(rReceta.findById(id).get());
+        }catch(Exception e){
+            return null;
+        }
+
+    }
+    
+    
 }

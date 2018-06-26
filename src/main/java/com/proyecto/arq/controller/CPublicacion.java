@@ -2,6 +2,7 @@ package com.proyecto.arq.controller;
 
 import com.proyecto.arq.entity.Categoria;
 import com.proyecto.arq.entity.Ingrediente;
+import com.proyecto.arq.entity.Publicacion;
 import com.proyecto.arq.model.MComentario;
 import com.proyecto.arq.model.MPublicacion;
 import com.proyecto.arq.service.SCategoria;
@@ -33,6 +34,35 @@ public class CPublicacion {
             return null;
         }
     }
+    
+    @GetMapping("/publicacion/publicas")
+    public  List<MPublicacion> listarUltimasPublicacionesPublicas(){
+        try{
+            return sPublicacion.listarUltimasPublicacionesPublicas();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    @GetMapping("/publicacion/seguidos")
+    public  List<MPublicacion> listarPublicacionesSeguidos(HttpServletRequest request){
+        try{
+            return sPublicacion.listarPublicacionesSeguidos((Integer)request.getSession().getAttribute("usuario"));
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    
+    @GetMapping("/publicacion")
+    public  List<MPublicacion> listarPublicacionMiPerfil(HttpServletRequest request){
+        try{
+            return sPublicacion.listarPublicacionesMiUsuario((Integer)request.getSession().getAttribute("usuario"));
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
 
     @GetMapping("/publicacion/likes/{id}")
     public  int listarCantidadLikesPublicacion(@PathVariable("id") int id){
@@ -53,9 +83,9 @@ public class CPublicacion {
     }
 
     @PutMapping("/publicacion/privacidad")
-    public  boolean cambiarPrivacidadPublicacion(@RequestParam("id_publicacion") int id){
+    public  boolean cambiarPrivacidadPublicacion(@RequestBody @Valid Publicacion publicacion){
         try{
-            return sPublicacion.cambiarPrivacidadPublicacion(id);
+            return sPublicacion.cambiarPrivacidadPublicacion(publicacion);
         }catch(Exception e){
             return false;
         }

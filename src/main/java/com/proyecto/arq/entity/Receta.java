@@ -12,58 +12,84 @@ public class Receta {
     @Id
     @GeneratedValue
     private int id;
-    @JsonProperty("nombre")
     private String nombre;
     @Transient
     private int id_usuario;
     @Transient
-    @JsonProperty("imagen_receta")
-    private MultipartFile imagen_receta;
+    private String imagen_receta;
     @Transient
-    @JsonProperty("imagen_publicacion")
-    private MultipartFile imagen_publicacion;
+    private String imagen_publicacion;
     @Transient
-    @JsonProperty("id_categoria")
     private int id_categoria;
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
+    
+    
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Paso> pasos;
 
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "receta")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Ingrediente> ingredientes;
 
+    /**
+     * 
+     */
     public Receta() {
 
     }
+ 
 
-
-    public MultipartFile getImagen_receta() {
-        return imagen_receta;
-    }
-
-    public void setImagen_receta(MultipartFile imagen_receta) {
-        this.imagen_receta = imagen_receta;
-    }
-
-    public MultipartFile getImagen_publicacion() {
-        return imagen_publicacion;
-    }
-
-    public void setImagen_publicacion(MultipartFile imagen_publicacion) {
-        this.imagen_publicacion = imagen_publicacion;
-    }
+    
+    
 
     public int getId_categoria() {
-        return id_categoria;
-    }
-
-    public void setId_categoria(int id_categoria) {
-        this.id_categoria = id_categoria;
-    }
+		return id_categoria;
+	}
 
 
-    public int getId_usuario() {
+
+
+
+	public void setId_categoria(int id_categoria) {
+		this.id_categoria = id_categoria;
+	}
+
+
+
+
+
+	public String getImagen_receta() {
+		return imagen_receta;
+	}
+
+
+
+
+
+	public void setImagen_receta(String imagen_receta) {
+		this.imagen_receta = imagen_receta;
+	}
+
+
+
+
+
+	public String getImagen_publicacion() {
+		return imagen_publicacion;
+	}
+
+
+
+
+
+	public void setImagen_publicacion(String imagen_publicacion) {
+		this.imagen_publicacion = imagen_publicacion;
+	}
+
+
+
+
+
+	public int getId_usuario() {
         return id_usuario;
     }
 
@@ -104,7 +130,20 @@ public class Receta {
         this.ingredientes = ingredientes;
     }
 
+    
+    
     @Override
+	public String toString() {
+		return "Receta [id=" + id + ", nombre=" + nombre + ", id_usuario=" + id_usuario + ", imagen_receta="
+				+ imagen_receta + ", imagen_publicacion=" + imagen_publicacion + ", id_categoria=" + id_categoria
+				+ ", pasos=" + pasos + ", ingredientes=" + ingredientes + "]";
+	}
+
+
+
+
+
+	@Override
     public int hashCode() {
         return id;
     }

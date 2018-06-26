@@ -1,6 +1,9 @@
 package com.proyecto.arq.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.proyecto.arq.entity.Paso;
 
 public class MPaso {
@@ -8,8 +11,7 @@ public class MPaso {
     private int id;
     private String nombre;
     private String descripcion;
-    private int receta;
-
+    private List<MIngrediente> ingredientes;
 
     public MPaso(){
 
@@ -19,16 +21,23 @@ public class MPaso {
         this.id=paso.getId();
         this.nombre=paso.getNombre();
         this.descripcion=paso.getDescripcion();
+        ingredientes=new ArrayList<>();
+    	for (int i = 0; i < paso.getIngredientes().size(); i++) {
+			ingredientes.add(new MIngrediente(paso.getIngredientes().get(i).getIngrediente()));
+		}
     }
 
-    public MPaso(int id, String nombre, String descripcion, int receta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.receta = receta;
-    }
+    
+    
+    public List<MIngrediente> getIngredientes() {
+		return ingredientes;
+	}
 
-    public int getId() {
+	public void setIngredientes(List<MIngrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -52,13 +61,6 @@ public class MPaso {
         this.descripcion = descripcion;
     }
 
-    public int getReceta() {
-        return receta;
-    }
-
-    public void setReceta(int receta) {
-        this.receta = receta;
-    }
 
     @Override
     public int hashCode() {

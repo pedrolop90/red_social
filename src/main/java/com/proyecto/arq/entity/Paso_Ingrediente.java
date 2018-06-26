@@ -9,23 +9,28 @@ public class Paso_Ingrediente {
     @GeneratedValue
     private int id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Paso paso;
-    @ManyToOne(fetch = FetchType.LAZY)
     private Ingrediente ingrediente;
     private String medida;
     private String cantidad;
 
+    @Transient
+    private int id_ingrediente;
+    
     public Paso_Ingrediente(){
 
     }
 
-    public Paso_Ingrediente(int id, Paso paso, Ingrediente ingrediente) {
-        this.id = id;
-        this.paso = paso;
-        this.ingrediente = ingrediente;
-    }
+    
+    
+    public int getId_ingrediente() {
+		return id_ingrediente;
+	}
 
-    public String getCantidad() {
+	public void setId_ingrediente(int id_ingrediente) {
+		this.id_ingrediente = id_ingrediente;
+	}
+
+	public String getCantidad() {
         return cantidad;
     }
 
@@ -41,13 +46,6 @@ public class Paso_Ingrediente {
         this.id = id;
     }
 
-    public Paso getPaso() {
-        return paso;
-    }
-
-    public void setPaso(Paso paso) {
-        this.paso = paso;
-    }
 
     public Ingrediente getIngrediente() {
         return ingrediente;

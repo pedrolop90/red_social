@@ -1,6 +1,9 @@
 package com.proyecto.arq.entity;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -9,15 +12,17 @@ public class Accion {
     @Id
     @GeneratedValue
     private int id;
-    private Date fecha;
+    private LocalDate fecha= LocalDate.now();
+    private LocalTime  hora= LocalTime.now();
     @Transient
     private int usuario_id;
     @Transient
     private int publicacion_id;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
-
+    
     @ManyToOne(fetch = FetchType.LAZY)
     private Publicacion publicacion;
 
@@ -25,7 +30,21 @@ public class Accion {
 
     }
 
-    public int getUsuario_id() {
+    
+    
+    public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+
+	public int getUsuario_id() {
         return usuario_id;
     }
 
@@ -56,22 +75,25 @@ public class Accion {
     public void setId(int id) {
         this.id = id;
     }
+ 
+    
 
-    public Date getFecha() {
-        return fecha;
-    }
+    public LocalDate getFecha() {
+		return fecha;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public LocalTime getHora() {
+		return hora;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+ 
 
     @Override
     public int hashCode() {
