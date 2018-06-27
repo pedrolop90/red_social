@@ -2,6 +2,7 @@ package com.proyecto.arq.model;
 
 
 import com.proyecto.arq.entity.Publicacion;
+import com.proyecto.arq.entity.Receta;
 
 import javax.persistence.Column;
 import javax.persistence.Lob;
@@ -15,10 +16,9 @@ public class MPublicacion {
     private int id;
     private LocalDate fecha;
     private LocalTime  hora;
-    private String imagen_publicacion;
     private String imagen_receta;
     private int cantidadLikes;
-    private int id_receta;
+    private MReceta receta;
     public MPublicacion(){
 
     }
@@ -27,30 +27,21 @@ public class MPublicacion {
         this.id=publicacion.getId();
         this.fecha=publicacion.getFecha();
         this.hora=publicacion.getHora();
-        this.imagen_publicacion=publicacion.getImagen_publicacion();
         this.imagen_receta=publicacion.getImage_receta();
         this.cantidadLikes=publicacion.getLikes().size();
-        this.id_receta=publicacion.getReceta().getId();
+        this.receta=new MReceta(publicacion.getReceta());
     }
  
-    
-    
+      
 
-	public int getId_receta() {
-		return id_receta;
+	public MReceta getReceta() {
+		return receta;
 	}
 
-	public void setId_receta(int id_receta) {
-		this.id_receta = id_receta;
-	}
-
-	public String getImagen_publicacion() {
-		return imagen_publicacion;
-	}
-
-	public void setImagen_publicacion(String imagen_publicacion) {
-		this.imagen_publicacion = imagen_publicacion;
-	}
+	public void setReceta(MReceta receta) {
+		this.receta = receta;
+	} 
+	
 
 	public void setImagen_receta(String imagen_receta) {
 		this.imagen_receta = imagen_receta;

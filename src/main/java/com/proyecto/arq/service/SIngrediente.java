@@ -3,6 +3,7 @@ package com.proyecto.arq.service;
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Receta;
+import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.repository.RIngrediente;
 import com.proyecto.arq.repository.RReceta;
 
@@ -22,14 +23,14 @@ public class SIngrediente {
     private Convertidor convertidor;
 
 
-    public List<Ingrediente> registrar(Receta receta) {
+    public MIngrediente registrar(Receta receta) {
         try {
         	Receta r=rReceta.findById(receta.getId()).get();
         	r.getIngredientes().addAll(receta.getIngredientes());
         	if(r.getPasos()!=null) {
             	r.getPasos().size();
         	}
-            return rReceta.save(r).getIngredientes();
+            return convertidor.convertirIngrediente(rReceta.save(r).getIngredientes().get(r.getIngredientes().size()-1));
         } catch (Exception e) {
             return null;
         }

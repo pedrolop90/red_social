@@ -96,10 +96,19 @@ public class Convertidor {
         return new MReceta(receta);
     }
 
-    
+    public MIngrediente convertirIngrediente(Ingrediente ingrediente){
+        return new MIngrediente(ingrediente);
+    }
     
     public MUsuario convertirUsuario(Usuario usuario){
         return new MUsuario(usuario);
     }
 
+    public MPaso convertirPasos(Paso paso){
+        return new MPaso(paso);
+    }
+
+    
+    
+    
 }

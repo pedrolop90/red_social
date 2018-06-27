@@ -2,6 +2,8 @@ package com.proyecto.arq.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Paso_Ingrediente {
 
@@ -9,6 +11,7 @@ public class Paso_Ingrediente {
     @GeneratedValue
     private int id;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties
     private Ingrediente ingrediente;
     private String medida;
     private String cantidad;

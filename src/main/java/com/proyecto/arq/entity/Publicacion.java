@@ -20,8 +20,7 @@ public class Publicacion {
     private Receta receta;
     private LocalDate fecha= LocalDate.now();
     private LocalTime  hora= LocalTime.now();
-    @Lob
-    private String imagen_publicacion;
+
     @Lob
     private String image_receta;
 
@@ -101,19 +100,7 @@ public class Publicacion {
 		this.hora = hora;
 	}
 
-
-
-	public String getImagen_publicacion() {
-		return imagen_publicacion;
-	}
-
-
-
-	public void setImagen_publicacion(String imagen_publicacion) {
-		this.imagen_publicacion = imagen_publicacion;
-	}
-
-
+ 
 
 	public String getImage_receta() {
 		return image_receta;

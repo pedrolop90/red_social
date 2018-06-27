@@ -102,7 +102,6 @@ public class CUsuario {
     @PutMapping("usuario")
     public boolean actualizarUsuario(@RequestBody @Valid Usuario usuario, HttpServletRequest request) {
         try{
-            usuario.setId((Integer) request.getSession().getAttribute("usuario"));
             return sUsuario.actualizar(usuario);
         }catch(Exception e){
         	e.printStackTrace();

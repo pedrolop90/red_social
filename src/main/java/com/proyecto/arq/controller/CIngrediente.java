@@ -22,7 +22,7 @@ public class CIngrediente {
 
     
     @PostMapping("/ingrediente")
-    public List<Ingrediente> agregarIngrediente(@RequestBody @Valid Receta receta, HttpServletRequest request){
+    public MIngrediente agregarIngrediente(@RequestBody @Valid Receta receta, HttpServletRequest request){
         return sIngrediente.registrar(receta);
     }
     

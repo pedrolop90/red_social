@@ -11,7 +11,7 @@ public class MPaso {
     private int id;
     private String nombre;
     private String descripcion;
-    private List<MIngrediente> ingredientes;
+    private List<MPaso_Ingrediente> ingredientes;
 
     public MPaso(){
 
@@ -23,17 +23,16 @@ public class MPaso {
         this.descripcion=paso.getDescripcion();
         ingredientes=new ArrayList<>();
     	for (int i = 0; i < paso.getIngredientes().size(); i++) {
-			ingredientes.add(new MIngrediente(paso.getIngredientes().get(i).getIngrediente()));
+			ingredientes.add(new MPaso_Ingrediente(paso.getIngredientes().get(i)));
 		}
     }
 
-    
-    
-    public List<MIngrediente> getIngredientes() {
+     
+	public List<MPaso_Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
 
-	public void setIngredientes(List<MIngrediente> ingredientes) {
+	public void setIngredientes(List<MPaso_Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
 

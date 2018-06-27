@@ -59,7 +59,6 @@ public class SReceta {
             Publicacion p=new Publicacion();
             p.setUsuario(rUsuario.findById(receta.getId_usuario()).get());
             p.setImage_receta(receta.getImagen_receta());
-            p.setImagen_publicacion(receta.getImagen_publicacion());
             p.setReceta(receta);
             p.setCategoria(rCategoria.findById(receta.getId_categoria()).get());
             return  convertidor.convertirReceta(rPublicacion.save(p).getReceta());
@@ -74,7 +73,6 @@ public class SReceta {
         	Publicacion p=rPublicacion.findByReceta(receta);
             p.setUsuario(rUsuario.findById(receta.getId_usuario()).get());
             p.setImage_receta(receta.getImagen_receta());
-            p.setImagen_publicacion(receta.getImagen_publicacion());
             p.setReceta(receta);
             p.setCategoria(rCategoria.findById(receta.getId_categoria()).get());
             if(receta.getPasos()!=null) {

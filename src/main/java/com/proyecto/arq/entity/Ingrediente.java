@@ -53,6 +53,12 @@ public class Ingrediente {
 
 
     @Override
+	public String toString() {
+		return "Ingrediente [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", medida=" + medida + "]";
+	}
+
+
+	@Override
     public int hashCode() {
         return id;
     }

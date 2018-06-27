@@ -23,7 +23,7 @@ public class MReceta {
     	this.nombre=receta.getNombre();
     	ingredientes=new ArrayList<>();
     	pasos=new ArrayList<>();
-    	for (int i = 0; i < receta.getIngredientes().size(); i++) {
+    	for (int i = 0; receta.getIngredientes()!=null && i <receta.getIngredientes().size(); i++) {
 			ingredientes.add(new MIngrediente(receta.getIngredientes().get(i)));
 		}
     	for (int i = 0;receta.getPasos()!=null&& i < receta.getPasos().size(); i++) {

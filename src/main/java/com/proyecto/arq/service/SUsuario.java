@@ -57,7 +57,11 @@ public class SUsuario {
 
     public boolean actualizar(Usuario usuario){
         try{
-            rUsuario.save(usuario);
+        	Usuario user=rUsuario.findByCorreo(usuario.getCorreo());
+        	user.setImagen_usuario(usuario.getImagen_usuario());
+        	user.setNickname(usuario.getNickname());
+        	user.setPassword(usuario.getPassword());
+            rUsuario.save(user);
             return true;
         }catch(Exception e){
         	e.printStackTrace();

@@ -3,6 +3,7 @@ package com.proyecto.arq.controller;
 import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
+import com.proyecto.arq.model.MPaso;
 import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.service.SPaso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class CPaso {
     private SPaso sPaso;
     
     @PostMapping("/paso")
-    public List<Paso> registrarPaso(@RequestBody @Valid Receta receta, HttpServletRequest request) {
+    public MPaso registrarPaso(@RequestBody @Valid Receta receta, HttpServletRequest request) {
         return sPaso.registrar(receta);
     }
     

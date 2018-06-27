@@ -6,6 +6,7 @@ import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Paso_Ingrediente;
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
+import com.proyecto.arq.model.MPaso;
 import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.repository.RIngrediente;
 import com.proyecto.arq.repository.RPaso;
@@ -31,15 +32,22 @@ public class SPaso {
     private RReceta rReceta;
     @Autowired
     private RPaso_Ingrediente rPasoIng;
+    @Autowired
+    private RIngrediente rIngrediente;
 
-    public List<Paso> registrar(Receta receta){
+    public MPaso registrar(Receta receta){
     	try {
         	Receta r=rReceta.findById(receta.getId()).get();
-        	r.getPasos().addAll(receta.getPasos());
+        	for (int i = 0; i < receta.getPasos().size(); i++) {
+        		for (int j = 0; j < receta.getPasos().get(i).getIngredientes().size(); j++) {
+        			receta.getPasos().get(i).getIngredientes().get(j).setIngrediente(rIngrediente.findById(receta.getPasos().get(i).getIngredientes().get(j).getId_ingrediente()).get());
+				}
+        		r.getPasos().add(receta.getPasos().get(i));
+			}
         	if(r.getIngredientes()!=null) {
             	r.getIngredientes().size();
         	}
-            return rReceta.save(r).getPasos();
+            return convertidor.convertirPasos(rReceta.save(r).getPasos().get(r.getPasos().size()-1));
         } catch (Exception e) {
             return null;
         }
