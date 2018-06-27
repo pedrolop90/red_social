@@ -34,7 +34,7 @@ public class CReceta {
     }
 
     @PutMapping("/receta")
-    public boolean actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
+    public MReceta actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
     	try {
     		 if(receta.getId_usuario()==0) {
     	  		   receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
@@ -42,7 +42,7 @@ public class CReceta {
     	        return sReceta.actualizar(receta);
     	}catch(Exception e) {
     		e.printStackTrace();
-    		return false;
+    		return null;
     	}
     }
     

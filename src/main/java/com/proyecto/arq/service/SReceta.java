@@ -69,8 +69,14 @@ public class SReceta {
         }
     }
 
-    public boolean actualizar(Receta receta){
+    public MReceta actualizar(Receta receta){
         try{
+        	Publicacion p=rPublicacion.findByReceta(receta);
+            p.setUsuario(rUsuario.findById(receta.getId_usuario()).get());
+            p.setImage_receta(receta.getImagen_receta());
+            p.setImagen_publicacion(receta.getImagen_publicacion());
+            p.setReceta(receta);
+            p.setCategoria(rCategoria.findById(receta.getId_categoria()).get());
             if(receta.getPasos()!=null) {
             	for (int i = 0; i < receta.getPasos().size(); i++) {
             		for (int j = 0; j < receta.getPasos().get(i).getIngredientes().size(); j++) {
@@ -79,11 +85,10 @@ public class SReceta {
             		}
 				}
             }
-            rReceta.save(receta);
-            return true;
+            return  convertidor.convertirReceta(rPublicacion.save(p).getReceta());
         }catch(Exception e){
         	e.printStackTrace();
-            return false;
+            return null;
         }
     }
 

@@ -2,8 +2,11 @@ package com.proyecto.arq.service;
 
 import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
+import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.repository.RIngrediente;
 import com.proyecto.arq.repository.RReceta;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +22,16 @@ public class SIngrediente {
     private Convertidor convertidor;
 
 
-
-    public int registrar(Ingrediente ingrediente) {
+    public List<Ingrediente> registrar(Receta receta) {
         try {
-            return rIngrediente.save(ingrediente).getId();
+        	Receta r=rReceta.findById(receta.getId()).get();
+        	r.getIngredientes().addAll(receta.getIngredientes());
+        	if(r.getPasos()!=null) {
+            	r.getPasos().size();
+        	}
+            return rReceta.save(r).getIngredientes();
         } catch (Exception e) {
-            return -1;
+            return null;
         }
     }
 

@@ -20,7 +20,9 @@ public class Publicacion {
     private Receta receta;
     private LocalDate fecha= LocalDate.now();
     private LocalTime  hora= LocalTime.now();
+    @Lob
     private String imagen_publicacion;
+    @Lob
     private String image_receta;
 
     private boolean privacidad=true;

@@ -1,6 +1,7 @@
 package com.proyecto.arq.repository;
 
 import com.proyecto.arq.entity.Publicacion;
+import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.entity.Usuario;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface RPublicacion extends JpaRepository<Publicacion, Integer> {
 	
 	@Query("select p from  Publicacion p where p.usuario.id=:usuario order by p.fecha,p.hora desc")
 	List<Publicacion> findByMiUsuario(@Param("usuario")int id);
+	
+	Publicacion findByReceta(Receta receta);
+	
 }

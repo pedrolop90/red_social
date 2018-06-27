@@ -1,11 +1,9 @@
 package com.proyecto.arq.controller;
 
-import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
+import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso_Ingrediente;
-import com.proyecto.arq.repository.RReceta;
-import com.proyecto.arq.service.SIngrediente;
 import com.proyecto.arq.service.SPaso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +20,8 @@ public class CPaso {
     private SPaso sPaso;
     
     @PostMapping("/paso")
-    public int registrarPaso(@RequestBody @Valid Paso paso, HttpServletRequest request) {
-        return sPaso.registrar(paso);
+    public List<Paso> registrarPaso(@RequestBody @Valid Receta receta, HttpServletRequest request) {
+        return sPaso.registrar(receta);
     }
     
     @PutMapping("/paso")

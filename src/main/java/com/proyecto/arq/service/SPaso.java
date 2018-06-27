@@ -4,6 +4,7 @@ import com.proyecto.arq.converter.Convertidor;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Paso;
 import com.proyecto.arq.entity.Paso_Ingrediente;
+import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso_Ingrediente;
 import com.proyecto.arq.repository.RIngrediente;
@@ -31,11 +32,16 @@ public class SPaso {
     @Autowired
     private RPaso_Ingrediente rPasoIng;
 
-    public int registrar(Paso paso){
-        try{
-            return rPaso.save(paso).getId();
-        }catch(Exception e){
-            return -1;
+    public List<Paso> registrar(Receta receta){
+    	try {
+        	Receta r=rReceta.findById(receta.getId()).get();
+        	r.getPasos().addAll(receta.getPasos());
+        	if(r.getIngredientes()!=null) {
+            	r.getIngredientes().size();
+        	}
+            return rReceta.save(r).getPasos();
+        } catch (Exception e) {
+            return null;
         }
     }
 

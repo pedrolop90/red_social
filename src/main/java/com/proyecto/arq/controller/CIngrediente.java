@@ -20,6 +20,12 @@ public class CIngrediente {
     @Autowired
     private SIngrediente sIngrediente;
 
+    
+    @PostMapping("/ingrediente")
+    public List<Ingrediente> agregarIngrediente(@RequestBody @Valid Receta receta, HttpServletRequest request){
+        return sIngrediente.registrar(receta);
+    }
+    
     @PutMapping("/ingrediente")
     public boolean actualizarIngrediente(@RequestBody @Valid Ingrediente ingrediente, HttpServletRequest request){
         return sIngrediente.actualizar(ingrediente);
