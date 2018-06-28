@@ -23,9 +23,7 @@ public class CReceta {
     @PostMapping("/receta")
     public MReceta registrarReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
        try{
-    	   if(receta.getId_usuario()==0) {
     		   receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
-    	   }
            return sReceta.registrar(receta);
        }catch(Exception e){
     	   e.printStackTrace();

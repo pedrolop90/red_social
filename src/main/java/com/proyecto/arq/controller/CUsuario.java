@@ -1,12 +1,13 @@
 package com.proyecto.arq.controller;
+ 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.proyecto.arq.entity.Usuario;
 import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.service.SUsuario;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -58,7 +59,9 @@ public class CUsuario {
     public int login(@RequestBody @Valid MUsuario usuario,HttpServletRequest request) {
         int res = sUsuario.login(usuario);
         if (res != -1) {
+        	request.getSession(true);
             request.getSession(true).setAttribute("usuario", res);
+            
         }
         return res;
     }
@@ -90,6 +93,7 @@ public class CUsuario {
     public MUsuario consultarUsuario(@PathVariable("id") int id) {
         return sUsuario.consultarUsuario(id);
     }
+    
     @GetMapping("usuario")
     public MUsuario consultarUsuarioPropio(HttpServletRequest request) {
     	try {
@@ -133,6 +137,7 @@ public class CUsuario {
        try{
     	   return sUsuario.cambiarPrivacidad((Integer) request.getSession().getAttribute("usuario"));
        }catch(Exception e){
+    	   e.printStackTrace();
            return false;
        }
     }
