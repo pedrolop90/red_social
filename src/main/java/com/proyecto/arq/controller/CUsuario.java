@@ -27,15 +27,26 @@ public class CUsuario {
     }
 
     @PostMapping("/usuario/seguir")
-    public boolean registrarSeguidos(HttpServletRequest request, @RequestBody @Valid MAmigo amigo) {
+    public boolean registrarSeguido(HttpServletRequest request, @RequestBody @Valid MAmigo amigo) {
         try{
             amigo.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
             return sUsuario.registrarSeguidor(amigo);
         }catch (Exception e){
+        	e.printStackTrace();
             return false;
         }
     }
 
+    @DeleteMapping("/usuario/seguir")
+    public boolean eliminarSeguido(HttpServletRequest request, @RequestBody @Valid MAmigo amigo) {
+        try{
+            amigo.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
+            return sUsuario.eliminarSeguidor(amigo);
+        }catch (Exception e){
+        	e.printStackTrace();
+            return false;
+        }
+    }
 
     @GetMapping("/usuario/seguidos")
     public List<MUsuario> listarSeguidos(HttpServletRequest request) {

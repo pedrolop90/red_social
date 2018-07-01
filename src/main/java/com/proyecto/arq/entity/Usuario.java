@@ -134,20 +134,18 @@ public class Usuario {
     public void setPublicaciones(List<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;
     }
-
-
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "usuario_id=" + id +
-                ", nickname='" + nickname + '\'' +
-                ", correo='" + correo + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+ 
 
     @Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nickname=" + nickname + ", correo=" + correo + ", password=" + password
+				+ ", privacidad=" + privacidad + ", imagen_usuario=" + imagen_usuario + "]";
+	}
+
+
+
+
+	@Override
     public int hashCode() {
         return id;
     }

@@ -107,6 +107,13 @@ public class MUsuario {
     public void setSeguidos(int seguidos) {
         this.seguidos = seguidos;
     }
+
+	@Override
+	public String toString() {
+		return "MUsuario [id=" + id + ", nickname=" + nickname + ", correo=" + correo + ", password=" + password
+				+ ", seguidores=" + seguidores + ", seguidos=" + seguidos + ", imagen_usuario=" + imagen_usuario
+				+ ", privacidad=" + privacidad + "]";
+	}
  
     
     

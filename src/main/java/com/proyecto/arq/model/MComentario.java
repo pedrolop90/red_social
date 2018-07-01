@@ -16,7 +16,7 @@ public class MComentario {
     private int id;
     private String comentario;
     private int publicacion;
-    private int usuario;
+    private int id_usuario;
     private String nickname;
     private LocalDate fecha;
     private LocalTime  hora;
@@ -28,7 +28,7 @@ public class MComentario {
     public MComentario(Comentario comentario){
         this.id=comentario.getId();
         this.publicacion=comentario.getPublicacion().getId();
-        this.usuario=comentario.getUsuario().getId();
+        this.id_usuario=comentario.getUsuario().getId();
         this.comentario=comentario.getComentario();
         this.nickname=comentario.getUsuario().getNickname();
         this.fecha=comentario.getFecha();
@@ -53,23 +53,20 @@ public class MComentario {
         this.comentario = comentario;
     }
 
-    public int getPublicacion() {
-        return publicacion;
-    }
 
     public void setPublicacion(int publicacion) {
         this.publicacion = publicacion;
     }
+ 
+    public int getId_usuario() {
+		return id_usuario;
+	}
 
-    public int getUsuario() {
-        return usuario;
-    }
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
+	}
 
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getNickname() {
+	public String getNickname() {
         return nickname;
     }
 

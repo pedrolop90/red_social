@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RUsuario extends JpaRepository<Usuario, Integer> {
 
-    Usuario findByCorreo(String usuario);
+    Usuario findByCorreo(String correo);
 
     //@Query("SELECT U FROM Usuario U WHERE U.nickname LIKE %:nombre%")
     List<Usuario> findByNicknameIgnoreCaseContaining(@Param("nombre") String nick);

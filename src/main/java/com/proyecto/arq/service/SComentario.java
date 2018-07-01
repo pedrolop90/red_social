@@ -72,7 +72,7 @@ public class SComentario {
 
     public boolean eliminar(int id){
         try{
-            rComentario.delete(rComentario.findById(id).get());
+            rComentario.deleteById(id);
             return true;
         }catch(Exception e){
             return false;

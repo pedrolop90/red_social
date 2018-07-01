@@ -26,9 +26,9 @@ public class CComentario {
     	  return -1;
       }
     }
-    @DeleteMapping("/comentario/{id}")
-    public boolean eliminarComentario(@PathVariable("id") int id){
-        return sComentario.eliminar(id);
+    @DeleteMapping("/comentario")
+    public boolean eliminarComentario(@RequestBody @Valid Comentario comentario){
+        return sComentario.eliminar(comentario.getId());
     }
 
 }

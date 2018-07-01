@@ -57,7 +57,16 @@ public class SAccion {
 			return -1;
 		}
     }
-
+    
+    public boolean eliminar(int id) {
+    	try {
+    		rAccion.deleteById(id);
+    		return true;
+    	}catch(Exception e) {
+    		return false;
+    	}
+    }
+    
 
 
 

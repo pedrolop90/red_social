@@ -10,6 +10,7 @@ import com.proyecto.arq.repository.RUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("SUsuario")
@@ -22,6 +23,7 @@ public class SUsuario {
     @Autowired
     private Convertidor convertidor;
 
+     
 
 
     public int registrar(Usuario usuario){
@@ -61,6 +63,7 @@ public class SUsuario {
         	user.setImagen_usuario(usuario.getImagen_usuario());
         	user.setNickname(usuario.getNickname());
         	user.setPassword(usuario.getPassword());
+        	user.setPrivacidad(usuario.isPrivacidad());
             rUsuario.save(user);
             return true;
         }catch(Exception e){
@@ -91,10 +94,21 @@ public class SUsuario {
             return false;
         }
     }
+    
+    public boolean eliminarSeguidor(MAmigo amigo){
+        try{
+            rAmigo.delete(rAmigo.findByAmigoAndUsuario(amigo.getId_usuario(), amigo.getId_amigo()));
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
 
     public List<MUsuario> listarSeguidos(int id){
         return convertidor.convertirSeguidos(rUsuario.findById(id).get().getSeguidos());
     }
+    
     public List<MUsuario> listarSeguidores(int id){
        try{
            return convertidor.convertirSeguidores(rUsuario.findById(id).get().getSeguidores());
@@ -129,4 +143,7 @@ public class SUsuario {
             return false;
         }
     }
+
+
+	
 }

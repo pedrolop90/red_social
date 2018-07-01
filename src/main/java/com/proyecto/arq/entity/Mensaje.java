@@ -2,6 +2,8 @@ package com.proyecto.arq.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -16,7 +18,8 @@ public class Mensaje implements Serializable {
     private Usuario destino;
     private String msj;
     private boolean leido;
-    private Date fecha;
+    private LocalDate fecha= LocalDate.now();
+    private LocalTime  hora= LocalTime.now();
 
     public Mensaje() {
 
@@ -67,16 +70,25 @@ public class Mensaje implements Serializable {
     public void setLeido(boolean leido) {
         this.leido = leido;
     }
+ 
 
-    public Date getFecha() {
-        return fecha;
-    }
+    public LocalDate getFecha() {
+		return fecha;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
-    @Override
+	public LocalTime getHora() {
+		return hora;
+	}
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+	@Override
     public String toString() {
         return "Mensaje{" +
                 "mensaje_id=" + id +

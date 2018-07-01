@@ -1,11 +1,7 @@
 package com.proyecto.arq.controller;
 
 
-import com.proyecto.arq.entity.Mensaje;
-import com.proyecto.arq.entity.Usuario;
-import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MMensaje;
-import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.service.SMensaje;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +18,13 @@ public class CMensaje {
     private SMensaje sMensaje;
 
     @PostMapping("/mensaje")
-    public int registrarUsuario(@RequestBody @Valid MMensaje mensaje, HttpServletRequest request){
-        return sMensaje.registrar(mensaje);
+    public int registrarMensaje(@RequestBody @Valid MMensaje mensaje, HttpServletRequest request){
+    	try {
+    		mensaje.setOrigen((Integer)request.getSession().getAttribute("usuario"));
+            return sMensaje.registrar(mensaje);
+    	}catch(Exception e) {
+    		return -1;
+    	}
     }
     @GetMapping("/mensaje/recibido/{id}")
     public List<MMensaje> listarMensajeRecibidos(@PathVariable("id") int id){

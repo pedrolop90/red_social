@@ -5,6 +5,9 @@ import com.proyecto.arq.entity.Mensaje;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class MMensaje {
@@ -14,7 +17,8 @@ public class MMensaje {
     private int destino;
     private String msj;
     private boolean leido;
-    private Date fecha;
+    private LocalDate fecha;
+    private LocalTime  hora;
 
     public MMensaje() {
 
@@ -29,13 +33,6 @@ public class MMensaje {
         fecha = mensaje.getFecha();
     }
 
-    public MMensaje(int origen, int destino, String msj, boolean leido, Date fecha) {
-        this.origen = origen;
-        this.destino = destino;
-        this.msj = msj;
-        this.leido = leido;
-        this.fecha = fecha;
-    }
 
     public MMensaje(int destino, String msj) {
         this.destino = destino;
@@ -92,16 +89,24 @@ public class MMensaje {
     public void setLeido(boolean leido) {
         this.leido = leido;
     }
+ 
+    public LocalDate getFecha() {
+		return fecha;
+	}
 
-    public Date getFecha() {
-        return fecha;
-    }
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	public LocalTime getHora() {
+		return hora;
+	}
 
-    @Override
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+	@Override
     public String toString() {
         return "Mensaje{" +
                 "mensaje_id=" + id +
