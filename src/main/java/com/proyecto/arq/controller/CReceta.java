@@ -1,5 +1,6 @@
 package com.proyecto.arq.controller;
 
+import com.proyecto.arq.configuration.JwtUtil;
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.model.MPaso;
@@ -23,7 +24,7 @@ public class CReceta {
     @PostMapping("/receta")
     public MReceta registrarReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
        try{
-    		   receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
+    		   receta.setId_usuario(Integer.parseInt(JwtUtil.getAuthentication(request)));
            return sReceta.registrar(receta);
        }catch(Exception e){
     	   e.printStackTrace();
@@ -34,9 +35,7 @@ public class CReceta {
     @PutMapping("/receta")
     public MReceta actualizaReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
     	try {
-    		 if(receta.getId_usuario()==0) {
-    	  		   receta.setId_usuario((Integer) request.getSession().getAttribute("usuario"));
-    	  	   }
+    	  		   receta.setId_usuario(Integer.parseInt(JwtUtil.getAuthentication(request)));
     	        return sReceta.actualizar(receta);
     	}catch(Exception e) {
     		e.printStackTrace();

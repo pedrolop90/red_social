@@ -133,20 +133,31 @@ public class Usuario {
 
     public void setPublicaciones(List<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;
-    }
- 
+    } 
 
-    @Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nickname=" + nickname + ", correo=" + correo + ", password=" + password
-				+ ", privacidad=" + privacidad + ", imagen_usuario=" + imagen_usuario + "]";
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 
 
 
 	@Override
-    public int hashCode() {
-        return id;
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
 }

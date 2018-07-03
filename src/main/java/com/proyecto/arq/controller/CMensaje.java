@@ -1,6 +1,7 @@
 package com.proyecto.arq.controller;
 
 
+import com.proyecto.arq.configuration.JwtUtil;
 import com.proyecto.arq.model.MMensaje;
 import com.proyecto.arq.service.SMensaje;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class CMensaje {
     @PostMapping("/mensaje")
     public int registrarMensaje(@RequestBody @Valid MMensaje mensaje, HttpServletRequest request){
     	try {
-    		mensaje.setOrigen((Integer)request.getSession().getAttribute("usuario"));
+    		mensaje.setOrigen(Integer.parseInt(JwtUtil.getAuthentication(request)));
             return sMensaje.registrar(mensaje);
     	}catch(Exception e) {
     		return -1;

@@ -1,5 +1,6 @@
 package com.proyecto.arq.controller;
 
+import com.proyecto.arq.configuration.JwtUtil;
 import com.proyecto.arq.entity.Accion;
 import com.proyecto.arq.entity.Comentario;
 import com.proyecto.arq.service.SAccion;
@@ -20,7 +21,7 @@ public class CAccion {
     @PostMapping("/like")
     public int registrarLike(@RequestBody @Valid Accion accion,HttpServletRequest request){
     	try {
-    		accion.setUsuario_id((Integer)request.getSession().getAttribute("usuario"));
+    		accion.setUsuario_id(Integer.parseInt(JwtUtil.getAuthentication(request)));
             return sAccion.registrar(accion);
     	}catch(Exception e) {
     		return -1;

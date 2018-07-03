@@ -131,12 +131,20 @@ public class Receta {
     }
 
     
-    
-    @Override
-	public String toString() {
-		return "Receta [id=" + id + ", nombre=" + nombre + ", id_usuario=" + id_usuario + ", imagen_receta="
-				+ imagen_receta + ", imagen_publicacion=" + imagen_publicacion + ", id_categoria=" + id_categoria
-				+ ", pasos=" + pasos + ", ingredientes=" + ingredientes + "]";
+     
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Receta other = (Receta) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 
@@ -144,7 +152,10 @@ public class Receta {
 
 
 	@Override
-    public int hashCode() {
-        return id;
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
 }

@@ -7,7 +7,7 @@ import com.proyecto.arq.model.MAmigo;
 import com.proyecto.arq.model.MUsuario;
 import com.proyecto.arq.repository.RAmigo;
 import com.proyecto.arq.repository.RUsuario;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,8 +22,7 @@ public class SUsuario {
     private RAmigo rAmigo;
     @Autowired
     private Convertidor convertidor;
-
-     
+ 
 
 
     public int registrar(Usuario usuario){

@@ -1,5 +1,6 @@
 package com.proyecto.arq.controller;
 
+import com.proyecto.arq.configuration.JwtUtil;
 import com.proyecto.arq.entity.Comentario;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.service.SComentario;
@@ -20,7 +21,7 @@ public class CComentario {
     @PostMapping("/comentario")
     public int registrarComentario(@RequestBody @Valid Comentario comentario,HttpServletRequest request){
       try {
-    	  comentario.setUsuario_id((Integer) request.getSession().getAttribute("usuario"));
+    	  comentario.setUsuario_id(Integer.parseInt(JwtUtil.getAuthentication(request)));
           return sComentario.registrar(comentario);
       }catch(Exception e) {
     	  return -1;

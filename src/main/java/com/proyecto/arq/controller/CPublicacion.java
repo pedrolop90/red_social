@@ -1,5 +1,6 @@
 package com.proyecto.arq.controller;
 
+import com.proyecto.arq.configuration.JwtUtil;
 import com.proyecto.arq.entity.Categoria;
 import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Publicacion;
@@ -47,7 +48,7 @@ public class CPublicacion {
     @GetMapping("/publicacion/seguidos")
     public  List<MPublicacion> listarPublicacionesSeguidos(HttpServletRequest request){
         try{
-            return sPublicacion.listarPublicacionesSeguidos((Integer)request.getSession().getAttribute("usuario"));
+            return sPublicacion.listarPublicacionesSeguidos(Integer.parseInt(JwtUtil.getAuthentication(request)));
         }catch(Exception e){
             return null;
         }
@@ -57,7 +58,7 @@ public class CPublicacion {
     @GetMapping("/publicacion")
     public  List<MPublicacion> listarPublicacionMiPerfil(HttpServletRequest request){
         try{
-            return sPublicacion.listarPublicacionesMiUsuario((Integer)request.getSession().getAttribute("usuario"));
+            return sPublicacion.listarPublicacionesMiUsuario(Integer.parseInt(JwtUtil.getAuthentication(request)));
         }catch(Exception e){
             return null;
         }

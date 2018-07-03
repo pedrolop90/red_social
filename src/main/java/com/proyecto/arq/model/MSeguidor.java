@@ -30,12 +30,31 @@ public class MSeguidor {
         this.seguido = seguido;
     }
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + seguido;
+		result = prime * result + usuario;
+		return result;
+	}
 
-    @Override
-    public String toString() {
-        return "MSeguidor{" +
-                "usuario=" + usuario +
-                ", seguido=" + seguido +
-                '}';
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MSeguidor other = (MSeguidor) obj;
+		if (seguido != other.seguido)
+			return false;
+		if (usuario != other.usuario)
+			return false;
+		return true;
+	}
+ 
+    
+    
 }

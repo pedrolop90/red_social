@@ -6,7 +6,8 @@ import com.proyecto.arq.entity.Usuario;
 
 public class MUsuario {
 
-    private int id;
+    
+	private int id;
     private String nickname;
     private String correo;
     private String password;
@@ -14,6 +15,7 @@ public class MUsuario {
     private int seguidos;
     private String imagen_usuario;
     private boolean privacidad;
+    private String token;
 
     public MUsuario() {
     }
@@ -22,22 +24,29 @@ public class MUsuario {
         id=usuario.getId();
         nickname=usuario.getNickname();
         correo=usuario.getCorreo();
-        password=usuario.getPassword();
         imagen_usuario=usuario.getImagen_usuario();
+        password=usuario.getPassword();
         privacidad=usuario.isPrivacidad();
     }
 
     public MUsuario(String nickname, String correo, String password, int seguidores, int seguidos) {
         this.nickname = nickname;
         this.correo = correo;
-        this.password = password;
         this.seguidores = seguidores;
         this.seguidos = seguidos;
     }
+ 
+    
+    
+    public String getToken() {
+		return token;
+	}
 
-    
-    
-    public boolean isPrivacidad() {
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public boolean isPrivacidad() {
 		return privacidad;
 	}
 
@@ -108,13 +117,27 @@ public class MUsuario {
         this.seguidos = seguidos;
     }
 
-	@Override
-	public String toString() {
-		return "MUsuario [id=" + id + ", nickname=" + nickname + ", correo=" + correo + ", password=" + password
-				+ ", seguidores=" + seguidores + ", seguidos=" + seguidos + ", imagen_usuario=" + imagen_usuario
-				+ ", privacidad=" + privacidad + "]";
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
- 
-    
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MUsuario other = (MUsuario) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
     
 }

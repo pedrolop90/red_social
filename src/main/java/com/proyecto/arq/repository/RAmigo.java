@@ -12,8 +12,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface RAmigo extends JpaRepository<Amigo, Integer> {
 
-	@Query("delete from Amigo a where a.usuario.id=:user and a.amigo.id=:amigo")
+	@Query("delete  from Amigo a where a.usuario.id=:user and a.amigo.id=:amigo")
 	Amigo findByAmigoAndUsuario(@Param("user")int usuario,@Param("amigo")int amigo);
-	
 	
 }
