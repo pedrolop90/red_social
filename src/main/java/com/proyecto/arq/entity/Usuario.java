@@ -19,9 +19,9 @@ public class Usuario {
     @Lob
     private String imagen_usuario;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "usuario")
     private List<Amigo> seguidos;
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "amigo")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "amigo")
     private List<Amigo> seguidores;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "destino")

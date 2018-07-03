@@ -96,7 +96,7 @@ public class SUsuario {
     
     public boolean eliminarSeguidor(MAmigo amigo){
         try{
-            rAmigo.delete(rAmigo.findByAmigoAndUsuario(amigo.getId_usuario(), amigo.getId_amigo()));
+            rAmigo.deleteById(rAmigo.findByAmigoAndUsuario(amigo.getId_usuario(), amigo.getId_amigo()).getId());
             return true;
         }catch(Exception e){
             return false;
