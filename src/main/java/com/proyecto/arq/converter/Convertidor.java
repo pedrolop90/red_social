@@ -59,10 +59,10 @@ public class Convertidor {
         return mIngredientes;
     }
 
-    public List<MPublicacion> convertirPublicacion(List<Publicacion> publicaciones){
+    public List<MPublicacion> convertirPublicacion(List<Publicacion> publicaciones,int user){
         List<MPublicacion> mPublicacions=new ArrayList<>();
         for (Publicacion u:publicaciones){
-            mPublicacions.add(new MPublicacion(u));
+            mPublicacions.add(new MPublicacion(u,user));
         }
         return mPublicacions;
     }

@@ -61,6 +61,7 @@ public class CUsuario {
     public List<MUsuario> listarSeguidos(HttpServletRequest request) {
         try {
             return sUsuario.listarSeguidos(Integer.parseInt(JwtUtil.getAuthentication(request)));
+            
         }catch (Exception e){
             return null;
         }

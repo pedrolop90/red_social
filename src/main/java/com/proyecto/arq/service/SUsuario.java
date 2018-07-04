@@ -107,7 +107,11 @@ public class SUsuario {
     
 
     public List<MUsuario> listarSeguidos(int id){
-        return convertidor.convertirSeguidos(rUsuario.findById(id).get().getSeguidos());
+         List<MUsuario> usuarios=convertidor.convertirSeguidos(rUsuario.findById(id).get().getSeguidos());
+         for (int i = 0; i < usuarios.size(); i++) {
+    				usuarios.get(i).setSiguiendo(true);
+ 			}
+         return usuarios;
     }
     
     public List<MUsuario> listarSeguidores(int id){

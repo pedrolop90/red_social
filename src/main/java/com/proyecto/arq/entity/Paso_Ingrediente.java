@@ -75,7 +75,7 @@ public class Paso_Ingrediente {
 		result = prime * result + id;
 		return result;
 	}
-
+ 
 
 
 	@Override

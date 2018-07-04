@@ -40,6 +40,7 @@ public class SPaso {
         	Receta r=rReceta.findById(receta.getId()).get();
         	for (int i = 0; i < receta.getPasos().size(); i++) {
         		for (int j = 0; j < receta.getPasos().get(i).getIngredientes().size(); j++) {
+        			System.out.println(receta.getPasos().get(i).getIngredientes().get(i).toString());
         			receta.getPasos().get(i).getIngredientes().get(j).setIngrediente(rIngrediente.findById(receta.getPasos().get(i).getIngredientes().get(j).getId_ingrediente()).get());
 				}
         		r.getPasos().add(receta.getPasos().get(i));
@@ -64,7 +65,8 @@ public class SPaso {
 
     public boolean eliminar(int id){
         try{
-            rPaso.delete(rPaso.findById(id).get());
+        	System.out.println("bbbbbbbbbbb");
+            rPaso.deleteById(id);
             return true;
         }catch(Exception e){
             return false;
@@ -79,13 +81,13 @@ public class SPaso {
 
     public boolean eliminarIngrediente(int id) {
         try {
-            rPasoIng.delete(rPasoIng.findById(id).get());
+            rPasoIng.deleteById(id);
             return true;
         } catch (Exception e) {
             return false;
         }
-
     }
+    
     public boolean actualizarpasoIngrediente(MPaso_Ingrediente ing){
         try{
             Paso paso=rPaso.findById(ing.getId_paso()).get();

@@ -134,6 +134,17 @@ public class Receta {
      
 
 	@Override
+	public String toString() {
+		return "Receta [id=" + id + ", nombre=" + nombre + ", id_usuario=" + id_usuario + ", imagen_receta="
+				+ imagen_receta + ", imagen_publicacion=" + imagen_publicacion + ", id_categoria=" + id_categoria
+				+ ", pasos=" + pasos + ", ingredientes=" + ingredientes + "]";
+	}
+
+
+
+
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

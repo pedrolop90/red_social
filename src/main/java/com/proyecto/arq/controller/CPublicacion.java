@@ -23,7 +23,7 @@ public class CPublicacion {
     private SPublicacion sPublicacion;
 
     @DeleteMapping("/publicacion/{id}")
-    public boolean listarCategorias(@PathVariable("id") int id){
+    public boolean eliminarPublicacion(@PathVariable("id") int id){
         return sPublicacion.eliminar(id);
     }
 
@@ -37,9 +37,9 @@ public class CPublicacion {
     }
     
     @GetMapping("/publicacion/publicas")
-    public  List<MPublicacion> listarUltimasPublicacionesPublicas(){
+    public  List<MPublicacion> listarUltimasPublicacionesPublicas(HttpServletRequest request){
         try{
-            return sPublicacion.listarUltimasPublicacionesPublicas();
+            return sPublicacion.listarUltimasPublicacionesPublicas(Integer.parseInt(JwtUtil.getAuthentication(request)));
         }catch(Exception e){
             return null;
         }

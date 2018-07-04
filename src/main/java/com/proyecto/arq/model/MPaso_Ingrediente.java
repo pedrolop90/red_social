@@ -9,6 +9,7 @@ public class MPaso_Ingrediente {
     private int id_ingrediente;
     private String medida;
     private String cantidad;
+    private String nombre_ing;
     public MPaso_Ingrediente(){
 
     }
@@ -20,9 +21,24 @@ public class MPaso_Ingrediente {
         this.id_ingrediente = p_i.getIngrediente().getId();
         this.medida=p_i.getMedida();
         this.cantidad=p_i.getCantidad();
+        this.nombre_ing=p_i.getIngrediente().getNombre();
     }
 
-    public String getCantidad() {
+    
+    
+    public String getNombre_ing() {
+		return nombre_ing;
+	}
+
+
+
+	public void setNombre_ing(String nombre_ing) {
+		this.nombre_ing = nombre_ing;
+	}
+
+
+
+	public String getCantidad() {
         return cantidad;
     }
 

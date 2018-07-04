@@ -5,6 +5,7 @@ import com.proyecto.arq.entity.Ingrediente;
 import com.proyecto.arq.entity.Receta;
 import com.proyecto.arq.model.MIngrediente;
 import com.proyecto.arq.repository.RIngrediente;
+import com.proyecto.arq.repository.RPaso_Ingrediente;
 import com.proyecto.arq.repository.RReceta;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public class SIngrediente {
 
     @Autowired
     private RIngrediente rIngrediente;
+    @Autowired
+    private RPaso_Ingrediente rPaso_Ingrediente;
     @Autowired
     private RReceta rReceta;
     @Autowired
@@ -48,8 +51,11 @@ public class SIngrediente {
 
     public boolean eliminar(int id){
         try{
-            rIngrediente.delete(rIngrediente.findById(id).get());
-            return true;
+        	if(rPaso_Ingrediente.findByIngrediente(rIngrediente.findById(id).get())==null) {
+                rIngrediente.deleteById(id);
+                return true;
+        	}
+        	return false;
         }catch(Exception e){
             return false;
         }

@@ -26,4 +26,6 @@ public interface RPublicacion extends JpaRepository<Publicacion, Integer> {
 	
 	Publicacion findByReceta(Receta receta);
 	
+	
+	
 }

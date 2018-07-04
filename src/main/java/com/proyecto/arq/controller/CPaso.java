@@ -39,8 +39,7 @@ public class CPaso {
         return sPaso.Listaringredientesporpasos(id);
     }
     @DeleteMapping("/paso/ingrediente/{id}")
-    public boolean eliminarIngredienteaunpaso(@PathVariable("id") int id)
-    {
+    public boolean eliminarIngredienteaunpaso(@PathVariable("id") int id){
         return sPaso.eliminarIngrediente(id);
     }
 

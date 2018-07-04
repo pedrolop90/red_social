@@ -62,8 +62,7 @@ public class Paso {
         this.ingredientes = ingredientes;
     }
  
-
-     
+ 
 
 	@Override
 	public int hashCode() {

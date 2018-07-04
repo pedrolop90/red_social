@@ -6,6 +6,7 @@ import com.proyecto.arq.entity.Publicacion;
 import com.proyecto.arq.model.MComentario;
 import com.proyecto.arq.model.MPublicacion;
 import com.proyecto.arq.repository.RPublicacion;
+import com.proyecto.arq.repository.RReceta;
 import com.proyecto.arq.repository.RUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class SPublicacion {
     private RPublicacion rPublicacion;
     @Autowired
     private RUsuario rUsuario;
+    @Autowired
+    private RReceta rReceta;
     @Autowired
     private Convertidor convertidor;
 
@@ -44,18 +47,18 @@ public class SPublicacion {
 
     public boolean eliminar(int id){
         try{
-            rPublicacion.delete(rPublicacion.findById(id).get());
+            rPublicacion.delete(rPublicacion.findByReceta(rReceta.findById(id).get()));
             return true;
         }catch(Exception e){
             return false;
         }
     }
     public List<MPublicacion> listarPublicacionesUnUsuario(int id){
-        return convertidor.convertirPublicacion(rPublicacion.findByUnUsuario(id));
+        return convertidor.convertirPublicacion(rPublicacion.findByUnUsuario(id),id);
     }
 
     public List<MPublicacion> listarPublicacionesMiUsuario(int id){
-        return convertidor.convertirPublicacion(rPublicacion.findByMiUsuario(id));
+        return convertidor.convertirPublicacion(rPublicacion.findByMiUsuario(id),id);
     }
 
     
@@ -78,12 +81,12 @@ public class SPublicacion {
         }
     }
     
-    public List<MPublicacion> listarUltimasPublicacionesPublicas(){
-        return convertidor.convertirPublicacion(rPublicacion.findByUsuario());
+    public List<MPublicacion> listarUltimasPublicacionesPublicas(int user){
+        return convertidor.convertirPublicacion(rPublicacion.findByUsuario(),user);
     }
     
     public List<MPublicacion> listarPublicacionesSeguidos(int id){
-        return convertidor.convertirPublicacion(rPublicacion.findBySeguidos(id));
+        return convertidor.convertirPublicacion(rPublicacion.findBySeguidos(id),id);
     }
 
 }
