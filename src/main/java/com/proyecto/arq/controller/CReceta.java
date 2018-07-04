@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import java.util.Enumeration;
 import java.util.List;
 
 @RestController
@@ -24,6 +26,7 @@ public class CReceta {
     @PostMapping("/receta")
     public MReceta registrarReceta(@RequestBody @Valid Receta receta,HttpServletRequest request){
        try{
+    	    
     		   receta.setId_usuario(Integer.parseInt(JwtUtil.getAuthentication(request)));
            return sReceta.registrar(receta);
        }catch(Exception e){

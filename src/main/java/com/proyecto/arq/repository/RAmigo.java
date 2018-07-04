@@ -15,4 +15,5 @@ public interface RAmigo extends JpaRepository<Amigo, Integer> {
 	@Query("select a from Amigo a where a.usuario.id=:user and a.amigo.id=:amigo")
 	Amigo findByAmigoAndUsuario(@Param("user")int usuario,@Param("amigo")int amigo);
 	
+
 }

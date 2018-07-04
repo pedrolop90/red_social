@@ -14,4 +14,6 @@ public interface RUsuario extends JpaRepository<Usuario, Integer> {
     //@Query("SELECT U FROM Usuario U WHERE U.nickname LIKE %:nombre%")
     List<Usuario> findByNicknameIgnoreCaseContaining(@Param("nombre") String nick);
 
+
+    
 }

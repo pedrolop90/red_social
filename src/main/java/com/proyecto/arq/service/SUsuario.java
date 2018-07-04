@@ -45,6 +45,8 @@ public class SUsuario {
     public int login(MUsuario usuario){
        try{
            Usuario user=rUsuario.findByCorreo(usuario.getCorreo());
+           
+           
            if(user.getPassword().equals(usuario.getPassword())){
                return user.getId();
            }else{
@@ -110,7 +112,13 @@ public class SUsuario {
     
     public List<MUsuario> listarSeguidores(int id){
        try{
-           return convertidor.convertirSeguidores(rUsuario.findById(id).get().getSeguidores());
+           List<MUsuario> usuarios=convertidor.convertirSeguidores(rUsuario.findById(id).get().getSeguidores());
+       	for (int i = 0; i < usuarios.size(); i++) {
+       		if(rAmigo.findByAmigoAndUsuario(id,usuarios.get(i).getId())!=null) {
+   				usuarios.get(i).setSiguiendo(true);
+       		}
+			}
+           return usuarios;
        }catch (Exception e){
            return null;
         }
@@ -124,9 +132,15 @@ public class SUsuario {
         return rUsuario.findById(id).get().getSeguidos().size();
     }
 
-    public List<MUsuario> listarUsuariosNombre(String nombre){
+    public List<MUsuario> listarUsuariosNombre(String nombre,int id){
         try{
-            return convertidor.convertirUsuarios(rUsuario.findByNicknameIgnoreCaseContaining(nombre));
+        	List<MUsuario> usuarios=convertidor.convertirUsuarios(rUsuario.findByNicknameIgnoreCaseContaining(nombre));
+        	for (int i = 0; i < usuarios.size(); i++) {
+        		if(rAmigo.findByAmigoAndUsuario(id,usuarios.get(i).getId())!=null) {
+    				usuarios.get(i).setSiguiendo(true);
+        		}
+			}
+            return usuarios;
         }catch(Exception e){
             return null;
         }

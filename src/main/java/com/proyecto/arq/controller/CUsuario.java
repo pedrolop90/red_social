@@ -102,8 +102,8 @@ public class CUsuario {
     }
 
     @GetMapping("usuarios/{nombre}")
-    public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre) {
-        return sUsuario.listarUsuariosNombre(nombre);
+    public List<MUsuario> listarUsuariosNombre(@PathVariable("nombre") String nombre,HttpServletRequest request) {
+        return sUsuario.listarUsuariosNombre(nombre,Integer.parseInt(JwtUtil.getAuthentication(request)));
     }
 
     @GetMapping("usuario/{id}")
@@ -113,7 +113,7 @@ public class CUsuario {
     
     @GetMapping("usuario")
     public MUsuario consultarUsuarioPropio(HttpServletRequest request) {
-    	try {
+    	try { 
             return sUsuario.consultarUsuario(Integer.parseInt(JwtUtil.getAuthentication(request)));
     	}catch(Exception e) {
     		return null;

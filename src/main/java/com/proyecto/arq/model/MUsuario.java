@@ -15,8 +15,9 @@ public class MUsuario {
     private int seguidos;
     private String imagen_usuario;
     private boolean privacidad;
-    private String token;
-
+    private boolean siguiendo;
+    
+    
     public MUsuario() {
     }
 
@@ -27,6 +28,7 @@ public class MUsuario {
         imagen_usuario=usuario.getImagen_usuario();
         password=usuario.getPassword();
         privacidad=usuario.isPrivacidad();
+        siguiendo=false;
     }
 
     public MUsuario(String nickname, String correo, String password, int seguidores, int seguidos) {
@@ -38,12 +40,12 @@ public class MUsuario {
  
     
     
-    public String getToken() {
-		return token;
+	public boolean isSiguiendo() {
+		return siguiendo;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setSiguiendo(boolean siguiendo) {
+		this.siguiendo = siguiendo;
 	}
 
 	public boolean isPrivacidad() {
