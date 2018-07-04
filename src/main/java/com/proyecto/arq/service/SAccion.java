@@ -58,9 +58,12 @@ public class SAccion {
 		}
     }
     
-    public boolean eliminar(int id) {
+    public boolean eliminar(int id,int user) {
     	try {
-    		rAccion.deleteById(id);
+    		
+    		Accion a=rAccion.findByUsuarioAndPublicacion(user, id);
+    		System.out.println(a.toString());
+    		rAccion.delete(a);
     		return true;
     	}catch(Exception e) {
     		return false;

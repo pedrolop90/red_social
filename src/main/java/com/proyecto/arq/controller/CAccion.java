@@ -28,9 +28,9 @@ public class CAccion {
     	}
     }
 
-    @DeleteMapping("/like")
-    public boolean eliminarLike(@RequestBody @Valid Accion accion){
-        return sAccion.eliminar(accion.getId());
+    @DeleteMapping("/like/{id}")
+    public boolean eliminarLike(@PathVariable("id") int id,HttpServletRequest request){
+        return sAccion.eliminar(id,Integer.parseInt(JwtUtil.getAuthentication(request)));
     }
     
 }

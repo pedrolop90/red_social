@@ -95,7 +95,16 @@ public class Accion {
 	}
  
 
+	
     @Override
+	public String toString() {
+		return "Accion [id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", usuario_id=" + usuario_id
+				+ ", publicacion_id=" + publicacion_id + ", usuario=" + usuario + ", publicacion=" + publicacion + "]";
+	}
+
+
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
