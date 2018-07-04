@@ -21,9 +21,11 @@ public class Accion {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(unique=true)
     private Usuario usuario;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(unique=true)
     private Publicacion publicacion;
 
     public Accion(){
