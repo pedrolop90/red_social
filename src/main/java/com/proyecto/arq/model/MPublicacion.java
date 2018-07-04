@@ -22,7 +22,8 @@ public class MPublicacion {
 	private MReceta receta;
 	private List<MComentario> comentarios;
 	private boolean like;
-
+	private boolean privacidad;
+	
 	public MPublicacion() {
 
 	}
@@ -45,7 +46,18 @@ public class MPublicacion {
 		for (int i = 0; publicacion.getComentarios() != null && i < publicacion.getComentarios().size(); i++) {
 			comentarios.add(new MComentario(publicacion.getComentarios().get(i)));
 		}
+		this.privacidad=publicacion.isPrivacidad();
 
+	}
+
+	
+	
+	public boolean isPrivacidad() {
+		return privacidad;
+	}
+
+	public void setPrivacidad(boolean privacidad) {
+		this.privacidad = privacidad;
 	}
 
 	public boolean isLike() {
