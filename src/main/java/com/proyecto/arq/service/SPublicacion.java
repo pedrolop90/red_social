@@ -53,8 +53,8 @@ public class SPublicacion {
             return false;
         }
     }
-    public List<MPublicacion> listarPublicacionesUnUsuario(int id){
-        return convertidor.convertirPublicacion(rPublicacion.findByUnUsuario(id),id);
+    public List<MPublicacion> listarPublicacionesUnUsuario(int id,int user){
+        return convertidor.convertirPublicacion(rPublicacion.findByUnUsuario(id),user);
     }
 
     public List<MPublicacion> listarPublicacionesMiUsuario(int id){

@@ -28,9 +28,9 @@ public class CPublicacion {
     }
 
     @GetMapping("/publicacion/{id}")
-    public  List<MPublicacion> listarPublicacionesUnUsuario(@PathVariable("id") int id){
+    public  List<MPublicacion> listarPublicacionesUnUsuario(@PathVariable("id") int id,HttpServletRequest request){
         try{
-            return sPublicacion.listarPublicacionesUnUsuario(id);
+            return sPublicacion.listarPublicacionesUnUsuario(id,Integer.parseInt(JwtUtil.getAuthentication(request)));
         }catch(Exception e){
             return null;
         }
